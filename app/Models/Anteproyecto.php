@@ -15,7 +15,8 @@ class Anteproyecto extends Model{
         $newDraft->titulo_anteproyecto  = $request['titulo'];
         $newDraft->resumen_anteproyecto  = $request['resumen'];
         $newDraft->codigo_modalidad  = $request['modalidad'];
-        $newDraft->codigo_grupo  = $request['grupo'];
+        $newDraft->codigo_grupo = $request['grupo'];
+        $newDraft->codigo_tema = $request['tema'];
         $newDraft->codigo_estadoante  = 1;
 
         $newDraft->save();
