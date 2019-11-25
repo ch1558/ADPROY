@@ -1,0 +1,282 @@
+.layout-boxed, .login-page {
+    background:url('../img/template/crossword.png') repeat fixed;
+    background-color: #fff;
+}
+.login-logo {
+    border-top: 20px solid white;
+    background-color: #F6001C;
+}
+
+/*
+ * Page: Login & Register
+ * ----------------------
+ */
+.Borde {
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+}
+.div-borde:focus, .div-borde:hover{
+    border-color: #f44336;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    border-bottom:1px solid #f44336 !important;
+}
+.input-login{
+    width:95%;
+    margin:10px auto 16px;
+}
+.login-box2-medium, .register-box-medium {
+    width: 600px;
+    margin: 3% auto;
+}
+.Borde.form-control:focus{
+    border-color: #f44336;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.Borde.custom-select{
+    /*border-color: #f44336;*/
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+@media (max-width: 768px) {
+    .login-box2-medium, .register-box-medium {
+        width: 90%;
+        margin-top: 20px;
+    }
+}
+.login-box2 {
+    width: 360px;
+    margin: 5% auto;
+}
+@media (max-width: 360px) {
+    .login-box2 {
+        width: 90%;
+        margin-top: 20px;
+    }
+}
+.login-links{
+    border-top: 3px solid #cc0033;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+.alert { margin: 10px; }
+
+/**
+*Complementos para boxes
+*/
+.border-top-primary{ border-top:3px solid #3c8dbc; }
+
+/**
+*Celdas table
+**/
+.td_center{ text-align: center; }
+.tr_color{ background-color: #f9f9f9; }
+.td_color{ background-color: #ffbebe; }
+.td_default_color{
+    background-color: transparent;
+    white-space: normal;
+}
+.td_sin_color{
+    background-color: transparent;
+    white-space: normal;
+}
+.td_color1{
+    background-color: #DCFFC5;
+    white-space: normal;
+}
+.td_color2{
+    background-color: #FFBCB4;
+    white-space: normal;
+}
+.td_color3{
+    background-color: #D4FFEB;
+    white-space: normal;
+}
+.td_color4{
+    background-color: #FFE7C2;
+    white-space: normal;
+}
+.td_color5{
+    background-color: #FFE8E6;
+    white-space: normal;
+}
+.td_color6{
+    background-color: #F0D0FF;
+    white-space: normal;
+}
+.td_color7{
+    background-color: #DEFDD1;
+    white-space: normal;
+}
+.td_color8{
+    background-color: #E4E5FF;
+    white-space: normal;
+}
+.td_color9{
+    background-color: #E0E0E0;
+    white-space: normal;
+}
+.td_color10{
+    background-color: #FBC8EE;
+    white-space: normal;
+}
+.td_color11{
+    background-color: #FFF2AD;
+    white-space: normal;
+}
+.td_color12{
+    background-color: #FBD3BC;
+    white-space: normal;
+}
+.td_color13{
+    background-color: #E6E6E6;
+    white-space: normal;
+}
+.td_color14{
+    background-color: #FFBCDC;
+    white-space: normal;
+}
+.td_color15{
+    background-color: #9E9AF7;
+    white-space: normal;
+}
+.td_color16{
+    background-color: #F16CE8;
+    white-space: normal;
+}
+.td_color17{
+    background-color: #F74B4B;
+    white-space: normal;
+}
+.td_color18{
+    background-color: #866AFD;
+    white-space: normal;
+}
+.td_color19{
+    background-color: #51F97C;
+    white-space: normal;
+}
+.td_color20{
+    background-color: #9EA05E;
+    white-space: normal;
+}
+.td_color_success{ background-color: #DCFFC5 !important; }
+.td_color_danger{ background-color: #FFC5C5 !important; }
+.td_color_warning{ background-color: #FDF3B8 !important; }
+.boxtitle2 {
+    font-size: 10px;
+    text-decoration: none;
+}
+.alert a { text-decoration: none; }
+.badge_pen {
+    width: 110px;
+    color: #000;
+}
+.stroke { text-shadow: -1px -1px 1px #fff, 1px 1px 1px #fff, -1px 1px 1px #fff, 1px -1px 1px #fff; }
+
+/*
+*select 2
+*
+*/
+.select2-selection{
+    border-radius: 0 !important;
+    width: 100%;
+}
+
+/*
+*Custom icons
+*/
+/* Icon Back */
+.hvr-icon-back2 {
+    /*display: inline-block;*/
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    padding-left: 1.5em;
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+}
+.hvr-icon-back2:before {
+    content: "\f10c";
+    position: absolute;
+    left: 1em;
+    padding-top: 3px;
+    font-family: FontAwesome;
+    /*    -webkit-transform: translateZ(0);
+        transform: translateZ(0);*/
+    /*    -webkit-transition-duration: 0.1s;
+        transition-duration: 0.1s;*/
+    /*    -webkit-transition-property: transform;
+        transition-property: transform;*/
+    /*    -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;*/
+    transition-duration: 0.5s;
+}
+.hvr-icon-back2:hover:before, .hvr-icon-back2:focus:before, .hvr-icon-back2:active:before {
+    /*content: "\f111";*/
+    /*    -webkit-transform: translateX(-1px);
+        transform: translateX(-1px);*/
+    -webkit-transform: scale(1.05) translateZ(0);
+    transform: scale(1.05) translateZ(0);
+    transition-duration: 0.5s;
+    color:#d05c5c;
+}
+.hvr-buzz-permanent{
+    -webkit-animation-name: hvr-buzz;
+    animation-name: hvr-buzz;
+    -webkit-animation-duration: 0.15s;
+    animation-duration: 0.15s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+/*** Style de calendario ***/
+.bg-calendario-custom { background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #7ba9d0), color-stop(1, #7ba9d0)) !important; }
+
+#datos1 {
+    width: 99%;
+    margin: 1% auto;
+}
+
+#Documento {
+    width: 98%;
+    height: 50px;
+    margin: 2% auto;
+}
+
+#Documento1 {
+    width: 98%;
+    height: 40px;
+    margin: 1% auto;
+}
+
+#Documento2 {
+    width: 43%;
+    margin-left: 4%;
+    height: 40px;
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#comite-meet{
+    display:flex; 
+    flex-direction:row;
+}
+
+@media (max-width: 992px) {
+    #comite-meet{ flex-direction:column; }
+}
