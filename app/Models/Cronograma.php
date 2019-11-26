@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cronograma extends Model
-{
-    //
+class Cronograma extends Model{
+    
+    protected $table = 'cronograma';
+
 }

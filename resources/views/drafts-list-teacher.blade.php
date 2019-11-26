@@ -3,61 +3,101 @@
 @section('title', 'ADPROY')
 
 @section('content')
-    <div class="content-wrapper" style="min-height: 819px;">
-        <section class="content-header">
-            <div id="template_alerts">
+
+
+
+
+<div class="content-wrapper" style="min-height: 808px;">
+    <section class="content-header">
+        <h1>Listado de Anteproyectos<small>Histórico de los anteproyectos presentados</small></h1>
+    </section>
+
+    <section class="content">
+        <div class="box-body no-padding clearfix">
+            <div class="row">
+                    @for($j=0; $j< sizeof($drafts); $j++)
+                    <div class="col-sm-13 col-md-6" style="padding: 0px 60px">
+                        <div class="box box-primary thumbnail">
+                            <div class="box-header">
+                                <i class="fa fa-book"></i> Proyecto {{$j + 1 }}
+                            </div>
+
+                            <div class="box box-body" >
+                                <div class="caption clearfix text-center" style="background-color:#fff; height:500px;">
+                                    <table class="table table-condensed table-hover">
+                                        <tbody>
+                                            <tr>
+                                                <td><h5 style="text-transform: uppercase;"><strong>{{ $drafts[$j][0]->titulo_anteproyecto }}</strong></h5></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h5>{{ $drafts[$j][0]->resumen_anteproyecto }}</h5></td>
+                                            </tr>
+                                            <tr><td>
+                                                <h5>AUTORES:</h5>
+                                                @for($i = 0; $i < sizeof($autores); $i++)
+                                                    @if(!empty($autores[$j][$i])) 
+                                                        @if($drafts[$j][0]->codigo_anteproyecto == $autores[$j][$i]->codigo_anteproyecto)
+                                                            <p>{{$autores[$j][$i]->name}} {{$autores[$j][$i]->last_name}} - {{$autores[$j][$i]->codigo_especifico}}</p>
+                                                        @endif
+                                                    @endif
+                                                @endfor  
+                                            </td></tr> 
+                                            <tr><td>
+                                                <h5>ESTADO:</h5>
+                                                @for($i = 0; $i < sizeof($estados); $i++)
+                                                    @if(!empty($estados[$i])) 
+                                                        @if($drafts[$j][0]->codigo_estadoante == $estados[$i]->codigo_estadoante)
+                                                            <p>{{$estados[$i]->nombre_estadoante}} </p>
+                                                        @endif
+                                                    @endif
+                                                @endfor  
+                                            </td></tr> 
+                                            <tr><td>
+                                                <h5>LINEA DE INVESTIGACIÓN:</h5>
+                                                @for($i = 0; $i < sizeof($lineas); $i++)
+                                                    @if(!empty($lineas[$i])) 
+                                                        @if($drafts[$j][0]->codigo_tema == $lineas[$i]->codigo_tema)
+                                                            <p>{{$lineas[$i]->nombre_tema}} </p>
+                                                        @endif
+                                                    @endif
+                                                @endfor  
+                                            </td></tr>
+                                            <tr><td>
+                                                <h5>GRUPO DE INVESTIGACIÓN:</h5>
+                                                @for($i = 0; $i < sizeof($grupos); $i++)
+                                                    @if(!empty($grupos[$i])) 
+                                                        @if($drafts[$j][0]->codigo_grupo == $grupos[$i]->codigo)
+                                                            <p>{{$grupos[$i]->siglas}} </p>
+                                                        @endif
+                                                    @endif
+                                                @endfor  
+                                            </td></tr>
+                                            <tr><td>
+                                                <h5>MODALIDAD:</h5>
+                                                @for($i = 0; $i < sizeof($modalidades); $i++)
+                                                    @if(!empty($modalidades[$i])) 
+                                                        @if($drafts[$j][0]->codigo_modalidad == $modalidades[$i]->codigo_modalidad)
+                                                            <p>{{$modalidades[$i]->nombre_modalidad}} </p>
+                                                        @endif
+                                                    @endif
+                                                @endfor  
+                                            </td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                    @endfor
             </div>
-            <h1>Listado de Proyectos<small>Histórico de los proyectos asignados</small></h1>
-        </section>
-        <section class="content">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <i class="fa fa-book"></i> Mis proyectos
-                </div>
+        </div>
+    </section>
 
-                <!-- Listado de los proyectos -->
-                <div class="box-body no-padding">
+</div>
 
-                    <div class="table-responsive" style="margin: 15px;">
-                        <table class="table table-hover text-center">
-                            <thead>
-                                <tr>
-                                    <th style="width:70%;">Titulo</th>
-                                    <th style="width:15%;">Estado</th>
-                                    <th style="width:5%;"></th>
-                                    <th style="width:5%;">Acciones</th>
-                                    <th style="width:5%;"></th>
 
-                                </tr>
-                            </thead>
-                            <tbody style="vertical-align: middle;">
-                                @for($i=0 ; $i < sizeof($drafts); $i++)
-                                    @if($i%2!=0)
-                                        <tr class="active">
-                                    @else
-                                        <tr>
-                                    @endif
-                                        <td>{{ $drafts[$i][0]->titulo_anteproyecto }}</td>
-                                        @for($j=0; $j < sizeof($estados); $j++ )
-                                            @if($drafts[$i][0]->codigo_estadoante == $estados[$j]->codigo_estadoante)
-                                                <td>{{ $estados[$j]->nombre_estadoante }}</td>
-                                            @endif
-                                        @endfor
-                                        <td></td>
-                                        <td><button id="bajar" class="btn btn-info"><i class="fa fa-download"></i><i> Descargar</i></button></td>
-                                    </tr>
-                                @endfor
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-        </section>
-        <!-- /.content -->
-    </div>
 @endsection
 
 @section('scripts')
-    <script> $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').trigger('focus')
-    })</script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
 @endsection
