@@ -173,6 +173,7 @@ class PageController extends Controller{
         $estudiantes = User::all();
         $autores = array();
         $j=0;
+        
         for($i=0; $i < sizeof($ownDrafts); $i++){
             $draft = Anteproyecto::where('codigo_anteproyecto', $ownDrafts[$i]->codigo_anteproyecto)->get();
             if($draft[0]->codigo_estadoante=='5'){
