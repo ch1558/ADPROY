@@ -4,13 +4,13 @@
     <!-- CONTENIDO DE DATOS PERSONALES -->
     <div class="content-wrapper" style="min-height: 808px;">
         <!--Titulo-->
-        <section class="content-header">
+        <section class="content-header"> 
             <!-- Alertas  -->
             <div id="template_alerts">
             </div>
             <!--Contenido del titulo-->
             <h1>
-                Información estudiantil <small>Consulte su información personal</small>
+                Información personal <small>Consulte su información personal</small>
                 <span class="text-muted pull-right" style="font-size: 10px;"></span>
             </h1>
         </section>
@@ -52,7 +52,7 @@
                                             <td>{{ auth()->user()->email }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Nombre de Carrera</th>
+                                            <th>@if(auth()->user()->estado==1||auth()->user()->rol==2) Nombre del Departamento @else Nombre de la Carrera @endif</th>
                                             @for($j=0; $j < sizeof($dependencias); $j++)
                                                 @if(auth()->user()->codigo_dependencia == $dependencias[$j]->codigo_dependencia)
                                                     <td>{{ $dependencias[$j]->nombre_dependencia }}</td>
