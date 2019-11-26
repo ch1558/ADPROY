@@ -135,55 +135,32 @@ class PageController extends Controller{
     }
 
     public function draftsListStudent(){
-        $directors = array();
-        $drafts = array();
-        $autores = array();
         $estados = EstadoAnteproyecto::all();
-        $grupos = Grupo::all();
-        $modalidades = Modalidad::all();
-        $lineas = Tema::all();
         $ownDrafts = AutorAnteproyecto::where('codigo_persona',auth()->user()->id)->get();
-        
+        $drafts = array();
+
         for($i=0; $i< sizeof($ownDrafts); $i++){
             $draft = Anteproyecto::where('codigo_anteproyecto',$ownDrafts[$i]->codigo_anteproyecto)->get();
             array_push($drafts,$draft);
-            $autor = User::join('autor_anteproyecto', 'users.id', '=', 'autor_anteproyecto.codigo_persona')->select('users.', 'autor_anteproyecto.')->where('autor_anteproyecto.codigo_anteproyecto', $ownDrafts[$i]->codigo_anteproyecto)->get();
-            array_push($autores, $autor);
-            $director = User::join('director', 'users.id', '=', 'codigo_persona')->select('users.', 'director.')->where('director.codigo_anteproyecto',$ownDrafts[$i]->codigo_anteproyecto)->get();
-            array_push($directors, $director);
         }
 
         return view('drafts-list-student')->with(compact('drafts'))
-                                        ->with(compact('estados'))
-                                        ->with(compact('directors'))
-                                        ->with(compact('modalidades'))
-                                        ->with(compact('grupos'))
-                                        ->with(compact('autores'))
-                                        ->with(compact('lineas'));
+                                        ->with(compact('estados'));
 
     }
 
     public function draftsListTeacher(){
         $estados = EstadoAnteproyecto::all();
-        $ownDrafts = Director::where('codigo_persona',auth()->user()->id)->get();
+        $ownDrafts = EvaluadorAnteproyecto::where('codigo_persona',auth()->user()->id)->get();
         $drafts = array();
-        $autores = array();
-        $lineas = Tema::all();
-        $grupos = Grupo::all();
-        $modalidades = Modalidad::all();
+
         for($i=0; $i < sizeof($ownDrafts); $i++){
             $draft = Anteproyecto::where('codigo_anteproyecto', $ownDrafts[$i]->codigo_anteproyecto)->get();
             array_push($drafts, $draft);
-            $autor = User::join('autor_anteproyecto', 'users.id', '=', 'autor_anteproyecto.codigo_persona')->select('users.', 'autor_anteproyecto.')->where('autor_anteproyecto.codigo_anteproyecto', $ownDrafts[$i]->codigo_anteproyecto)->get();
-            array_push($autores, $autor);
         }
 
         return view('drafts-list-teacher')->with(compact('drafts'))
-                                          ->with(compact('modalidades'))
-                                          ->with(compact('estados'))
-                                          ->with(compact('autores'))
-                                          ->with(compact('grupos'))
-                                          ->with(compact('lineas'));
+                                          ->with(compact('estados'));
     }
 
     public function draftsRecord(){
@@ -380,7 +357,7 @@ class PageController extends Controller{
             $names = array();
             for($j=0; $j<sizeof($directors); $j++){
                 $director = User::where('id', $directors[$j]->codigo_persona)->get();
-                array_push($names,$director[0]->name);
+                array_push($names,$director[0]->name.' '.$director[0]->last_name);
             }
             array_push($draftdirectors,$names);
             array_push($owndirectors,$directors);

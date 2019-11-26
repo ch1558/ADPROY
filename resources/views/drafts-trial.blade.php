@@ -22,7 +22,7 @@
                     <div class="box-body no-padding">
                     <table class="table">
                         <thead class="thead-dark">
-                            <tr>
+                            <tr class="text-center">
                             <th class="col" scope="col">#</th>
                             <th class="col" scope="col">Nombre Anteproyecto</th>
                             <th class="col" scope="col">Jurado 1</th>
@@ -34,18 +34,37 @@
                         </thead>
                             <form method="POST" action="">
                                 @csrf
-                                <!--<?php print_r($draftdirectors) ?>--> 
                                 <tbody>
-                                    <tr>
-                                        @for ($i = 0; $i < sizeof($drafts); $i++)
+                                    
+                                    @for ($i = 0; $i < sizeof($drafts); $i++)
+                                        <tr>
                                             <th scope="row">{{$i+1}}</th>
-                                            <td>{{$drafts[$i]->titulo_anteproyecto}}</td>
-                                            <td style="@if($owndirectors[$i][0]->codigo_evaluacion=='0') background-color:#f99d4c @else background-color:#39dda7 @endif; color:#fff; width:100px;">{{$draftdirectors[$i][0]}}</td>
-                                            <td style="@if($owndirectors[$i][1]->codigo_evaluacion=='0') background-color:#f99d4c @else background-color:#39dda7 @endif; color:#fff; width:100px;">{{$draftdirectors[$i][1]}}</td>
-                                            <td style="@if($owndirectors[$i][2]->codigo_evaluacion=='0') background-color:#f99d4c @else background-color:#39dda7 @endif; color:#fff; width:100px">{{$draftdirectors[$i][2]}}</td>
-                                            <td>{{$owndirectors[$i][0]->codigo_evaluacion}}</td>
-                                            <td>03:23:21</td>
-                                        @endfor
+                                            <td >{{$drafts[$i]->titulo_anteproyecto}}</td>
+                                            <td>
+                                                <span class="badge hvr-grow-shadow @if($owndirectors[$i][0]->codigo_evaluacion=='0') td_color2 @else td_color1 @endif; badge_pen"> {{$draftdirectors[$i][0]}}</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge hvr-grow-shadow @if($owndirectors[$i][1]->codigo_evaluacion=='0') td_color2 @else td_color1 @endif; badge_pen"> {{$draftdirectors[$i][1]}}</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge hvr-grow-shadow @if($owndirectors[$i][2]->codigo_evaluacion=='0') td_color2 @else td_color1 @endif; badge_pen"> {{$draftdirectors[$i][2]}}</span>
+                                            </td>
+                                            <?php 
+                                                $div = 100/3; 
+                                                $cont = 0;
+                                                if($owndirectors[$i][0]->codigo_evaluacion!='0') $cont++;
+                                                if($owndirectors[$i][1]->codigo_evaluacion!='0') $cont++;
+                                                if($owndirectors[$i][2]->codigo_evaluacion!='0') $cont++;
+
+                                                $rrr = $owndirectors[$i][0]->fecha_director;
+                                                $dateend = date("Y-m-d",strtotime($rrr."+ 3 month"));
+                                                $dateact = date("Y-m-d");
+                                                $dateend = (new DateTime($dateact))->diff(new DateTime($dateend));
+                                            ?>
+                                            <td style="text-align: center;">{{(int)($div*$cont)}}%</td>
+                                            <td>{{$dateend->days}} días</td>
+                                        </tr>
+                                    @endfor
                                         <!--<th scope="row"></th>
                                         <td>Alertas temprano un proyecto todo hardcore</td>
                                         <td style="background-color:#f99d4c; color:#fff; width:100px;">Brayan arias</td>
@@ -53,7 +72,7 @@
                                         <td style="background-color:#39dda7; color:#fff; width:100px">Juan Camilo</td>
                                         <td>20%</td>
                                         <td>03:23:21</td>-->
-                                    </tr>
+                                    
                                 </tbody>
                             </form>
                     </table>
