@@ -34,23 +34,30 @@
                         </thead>
                             <form method="POST" action="">
                                 @csrf
+                                <!--<?php print_r($draftdirectors) ?>--> 
                                 <tbody>
                                     <tr>
-                                        <th scope="row"></th>
+                                        @for ($i = 0; $i < sizeof($drafts); $i++)
+                                            <th scope="row">{{$i+1}}</th>
+                                            <td>{{$drafts[$i]->titulo_anteproyecto}}</td>
+                                            <td style="@if($owndirectors[$i][0]->codigo_evaluacion=='0') background-color:#f99d4c @else background-color:#39dda7 @endif; color:#fff; width:100px;">{{$draftdirectors[$i][0]}}</td>
+                                            <td style="@if($owndirectors[$i][1]->codigo_evaluacion=='0') background-color:#f99d4c @else background-color:#39dda7 @endif; color:#fff; width:100px;">{{$draftdirectors[$i][1]}}</td>
+                                            <td style="@if($owndirectors[$i][2]->codigo_evaluacion=='0') background-color:#f99d4c @else background-color:#39dda7 @endif; color:#fff; width:100px">{{$draftdirectors[$i][2]}}</td>
+                                            <td>{{$owndirectors[$i][0]->codigo_evaluacion}}</td>
+                                            <td>03:23:21</td>
+                                        @endfor
+                                        <!--<th scope="row"></th>
                                         <td>Alertas temprano un proyecto todo hardcore</td>
                                         <td style="background-color:#f99d4c; color:#fff; width:100px;">Brayan arias</td>
                                         <td style="background-color:#39dda7; color:#fff; width:100px;">Karen Brigid</td>
                                         <td style="background-color:#39dda7; color:#fff; width:100px">Juan Camilo</td>
                                         <td>20%</td>
-                                        <td>03:23:21</td>
+                                        <td>03:23:21</td>-->
                                     </tr>
                                 </tbody>
                             </form>
                     </table>
                 </div>
             </section> 
-       
-            
-
     </div>
 @endsection

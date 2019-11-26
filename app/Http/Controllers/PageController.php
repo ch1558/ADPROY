@@ -348,7 +348,24 @@ class PageController extends Controller{
     }
     
     public function draftsTrial(){
-        return view('drafts-trial');
+        $drafts = Anteproyecto::where('codigo_estadoante','=','5')->get();
+        $draftdirectors = array();
+        $owndirectors = array();
+        
+        for($i=0; $i<sizeof($drafts); $i++){
+            $directors = EvaluadorAnteproyecto::where('codigo_anteproyecto',$drafts[$i]->codigo_anteproyecto)->get();
+            $names = array();
+            for($j=0; $j<sizeof($directors); $j++){
+                $director = User::where('id', $directors[$j]->codigo_persona)->get();
+                array_push($names,$director[0]->name);
+            }
+            array_push($draftdirectors,$names);
+            array_push($owndirectors,$directors);
+        }
+
+        return view('drafts-trial')->with(compact('drafts'))
+                                   ->with(compact('draftdirectors'))
+                                   ->with(compact('owndirectors'));
     }
     
     public function projectstatus(){
