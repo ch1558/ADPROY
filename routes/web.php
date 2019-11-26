@@ -1,6 +1,8 @@
 <?php
 
-/** Holi Camilo */
+/** Holi Camilo 
+ * Hola Karen, Cómo estas?
+*/
 
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/', 'Auth\LoginController@login');
