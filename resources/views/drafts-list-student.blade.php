@@ -95,9 +95,7 @@
 
 
 <!-- /.content -->
-@php
-   $var = isset($_GET['id']) ? $_GET['id'] : 0;
-@endphp
+
 
 
 <!--Modal Editar-->
@@ -210,7 +208,7 @@
                                         </div>
 
                                         <div class= "row text-left" style="margin: 2%">
-                                            <div class = "col-md-6 col-xs-12 col-sm-12"><i class = "fa fa-book"></i><i> </i>Documento de Anteproyecto:</div>
+                                            <div class = "col-md-6 col-xs-12 col-sm-we2"><i class = "fa fa-book"></i><i> </i>Documento de Anteproyecto:</div>
                                             <div class = "col-md-6 col-xs-12 col-sm-12"><input type= "file" id="notas" name="notas"></div>
                                         </div>
                                     </div>
@@ -234,6 +232,7 @@
 
 @section('scripts')
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+
 <script>
             function showInfoDraft(id) {
                 let url = window.location.href;

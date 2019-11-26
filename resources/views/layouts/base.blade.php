@@ -97,6 +97,7 @@
         <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/app.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/portales.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/modal.js') }}"></script>
 
         @yield('scripts')
 

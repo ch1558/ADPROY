@@ -24,4 +24,8 @@ class Anteproyecto extends Model{
         return $newDraft;
     }
 
+    function toString(){
+        return "'".$this->titulo_anteproyecto."','".$this->resumen_anteproyecto."','".$this->codigo_modalidad."','".$this->codigo_grupo."','".$this->codigo_tema."'";
+    }
+
 }
