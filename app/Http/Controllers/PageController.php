@@ -269,21 +269,15 @@ class PageController extends Controller{
 
     public function assignEvaluators(){
         $ownDrafts = Anteproyecto::where('codigo_estadoante','=','4')->get();
-        $draftThemes = TemaAnteproyecto::all();
-        $themes = Tema::all();
         $ownThemes = array();
         $ownDirectors = array();
         $teachers = User::where('rol','=','2')->get();
         $draftDirectors = Director::all();
-        $k=0;$m=0;
+        $m=0;
 
         for($i=0; $i<sizeof($ownDrafts); $i++){
-            for($j=0; $j<sizeof($draftThemes); $j++){
-                if($draftThemes[$j]->codigo_anteproyecto==$ownDrafts[$i]->codigo_anteproyecto){
-                    $ownThemes[$k]=$themes[$draftThemes[$j]->codigo_tema]->nombre_tema;
-                    $k++;
-                }
-            }
+            $theme = Tema::where('codigo_tema',$ownDrafts[$i]->codigo_tema)->get();
+            array_push($ownThemes,$theme);
             for($j=0; $j<sizeof($draftDirectors); $j++){
                 if($draftDirectors[$j]->codigo_anteproyecto==$ownDrafts[$i]->codigo_anteproyecto){
                     for($l=0; $l<sizeof($teachers); $l++){
@@ -297,7 +291,6 @@ class PageController extends Controller{
                 }
             }
         }
-
 
         return view('assign-evaluators')->with(compact('ownDrafts'))
                                         ->with(compact('ownThemes'))

@@ -45,7 +45,7 @@
                             <th scope='row'>{{ $i+1 }}</th>
                             <td>{{ $ownDrafts[$i]->titulo_anteproyecto }}</td>
                             <td>{{ $ownDrafts[$i]->resumen_anteproyecto }}</td>
-                                <td>@if(sizeof($ownThemes)>0) {{ $ownThemes[$i] }} @else Sin tema @endif</td>
+                            <td>{{ $ownThemes[$i][0]->nombre_tema }}</td>
 
                             <td>
                                 @for ($j = 0; $j < sizeof($ownDirectors); $j++)
