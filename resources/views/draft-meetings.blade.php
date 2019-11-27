@@ -48,7 +48,7 @@
                             <input type="text" class="Borde form-control" placeholder="Nombre de la reunion" aria-label="nombre" name="nombre" maxlength="100"  required="required" aria-describedby="basic-addon1">
                         </div>
 
-                        <div class="div-borde input-group mb-3" style="margin: 5px 15px;">
+                        <div class="col-md-3 col-xs-11 div-borde input-group mb-3" style="margin: 5px 15px;">
                             <label>Anteproyecto</label>
                             <select id="modalidad" class="Borde custom-select mr-sm-2" name="anteproyecto" style="padding: 5px;">
                                 <option id="Documento1" selected>Seleccione Anteproyecto</option>
@@ -60,12 +60,12 @@
                     </div>
 
                     <div class='row'>
-                        <div class='col-md-7' style="padding: 5px">
-                            <label style="padding: 1px 10px;">Descripción</label>
-                            <textarea id="descripcion" name="descripcion" class="form-control" rows="2" placeholder="Ingrese la descripción del anteproyecto" style="height: 40px; margin:10px" required="required"></textarea>
+                        <div class='col-md-11' style="padding: 5px;">
+                            <label style="padding: 1px 25px;">Descripción</label>
+                            <textarea id="descripcion" name="descripcion" class="form-control" rows="2" placeholder="Ingrese la descripción del anteproyecto" style="height: 40px; margin: 10px 35px" required="required"></textarea>
 
-                            <label style="padding: 1px 10px;">Observaciones</label>
-                            <textarea id="observacion" name="observacion" class="form-control" rows="2" placeholder="Ingrese la descripción del anteproyecto" style="height: 40px; margin:10px" required="required"></textarea>
+                            <label style="padding: 1px 25px;">Observaciones</label>
+                            <textarea id="observacion" name="observacion" class="form-control" rows="2" placeholder="Ingrese la descripción del anteproyecto" style="height: 40px; margin: 10px 35px" required="required"></textarea>
                         </div>
                     </div>
 

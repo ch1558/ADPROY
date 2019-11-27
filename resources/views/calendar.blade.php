@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@section('title')
+    Reuniones del comite
+@endsection
+
 @section('content')
 
     <div class="content-wrapper" style="min-height: 808px;">

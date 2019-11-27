@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title', 'ADPROY')
+@section('title', 'Objetivos pendientes de verificación')
 @section('content')
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper" style="min-height: 819px;">
