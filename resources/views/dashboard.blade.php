@@ -1,5 +1,7 @@
 @extends('layouts.base')
 
+@section('title','Información Personal')
+
 @section('content')
     <!-- CONTENIDO DE DATOS PERSONALES -->
     <div class="content-wrapper" style="min-height: 808px;">
