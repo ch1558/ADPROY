@@ -32,7 +32,7 @@
                     <div class="col-md-5">
                         <div class="row">
                             <div class="div-borde input-group mb-3" style="width: 100%;margin: 5px;padding: 10px 10px 0px 10px;">
-                                <select id="lineaInvestigacion" class="Borde custom-select mr-sm-2" name="lineaInvestigacion" style="padding: 5px;">
+                                <select id="tema" class="Borde custom-select mr-sm-2" name="tema" style="padding: 5px;">
                                     <option id="Documento1"selected>Seleccione linea de investigacion</option>
                                     @for($i=0; $i < sizeof($lineas); $i++)
                                         <option value="{{ $lineas[$i]->codigo_tema }}" >{{ $lineas[$i]->nombre_tema }}</option>

@@ -46,6 +46,7 @@ class PageController extends Controller{
                                     ->with(compact('directores'));
     }
 
+
     public function uploadDraft(Request $request){
         $draft = new Anteproyecto;
         $autoria = new AutorAnteproyecto;
@@ -162,6 +163,13 @@ class PageController extends Controller{
                                         ->with(compact('lineas'));
 
     }
+
+    public function editDraftStudent(Request $request){
+        $draft = New Anteproyecto;
+        $draft->store($request);
+        return redirect()->route('drafts-list-student');
+    }
+
 
     public function draftsListTeacher(){
         $estados = EstadoAnteproyecto::all();
