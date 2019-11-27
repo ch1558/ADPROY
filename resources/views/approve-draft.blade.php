@@ -43,7 +43,6 @@
                             <th scope='row'>{{ $i+1 }}</th>
                             <td>{{ $drafts[$i][0]->titulo_anteproyecto }}</td>
                             <td>{{ $drafts[$i][0]->resumen_anteproyecto }}</td>
-
                             <td>
 
                             @for ($j=0; $j < sizeof($autores); $j++)
