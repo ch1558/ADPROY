@@ -46,6 +46,7 @@ class PageController extends Controller{
                                     ->with(compact('directores'));
     }
 
+
     public function uploadDraft(Request $request){
         $draft = new Anteproyecto;
         $autoria = new AutorAnteproyecto;
@@ -163,6 +164,13 @@ class PageController extends Controller{
 
     }
 
+    public function editDraftStudent(Request $request){
+        $draft = New Anteproyecto;
+        $draft->store($request);
+        return redirect()->route('drafts-list-student');
+    }
+
+
     public function draftsListTeacher(){
         $estados = EstadoAnteproyecto::all();
         $ownDrafts = Director::where('codigo_persona',auth()->user()->id)->get();
@@ -206,7 +214,7 @@ class PageController extends Controller{
                     $autores[$j][1]=$autor[$k]->codigo_persona;
                     $j++;
                 }
-                array_push($drafts, $draft);
+                array_push($drafts, $draft[0]);
             }
         }
 

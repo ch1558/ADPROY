@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'ADPROY')
+@section('title', 'Historial de Anteproyectos')
 
 @section('content')
 
@@ -114,60 +114,50 @@
                             <section class="content">
                                 <div class="box box-primary">
                                     <div class="box-header with-border">
-                                        <i class="fa fa-times-circle"></i> Cancelar anteproyecto
-                                    </div>
-                                    <div class="box-footer clearfix text-center">
-                                        <button id="bajar" class="btn btn-danger" style="width: 200px;"><i class="fa fa-trash"></i><i>Cancelar anteproyecto</i></button>
-                                    </div>
-                                </div>
-                                <div class="box box-primary">
-                                    <div class="box-header with-border">
                                         <i class="fa fa-pencil-square-o"></i> Editar datos del anteproyecto
                                     </div>
-                                    <form>
                                         <!-- Listado de los proyectos -->
                                         <div class="box-body no-padding">
+                                        <form method="POST" action="{{ route('drafts-list-student') }}">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-md-7">
-                                                    <textarea id="datos1" class="form-control" rows="3" style="height: 50px;" required="required"></textarea>
-                                                    <textarea id="datos2" class="form-control" rows="3" placeholder="Resumen" required="required"></textarea>
+                                                    <textarea id="titulo" name = "titulo" class="form-control" rows="3" style="height: 50px;" required="required"></textarea>
+                                                    <textarea id="resumen" name = "resumen" class="form-control" rows="3" placeholder="Resumen" required="required"></textarea>
                                                 </div>
                                                 <div class="col-md-5">
                                                     <div class="row">
-                                                        <select id="datos3" class="Borde" name="Tipo Documento" required="required">
+                                                        <select id="tema" name="tema" class="Borde" name="Tipo Documento" required="required">
                                                         @for($i=0; $i < sizeof($lineas); $i++)
                                                             <option value="{{ $lineas[$i]->codigo_tema }}" >{{ $lineas[$i]->nombre_tema }}</option>
                                                         @endfor
                                                         </select>
                                                     </div>
                                                     <div class="row">
-                                                        <select id="datos4" class="Borde" name="Tipo Documento">
+                                                        <select id="grupo" name="grupo" class="Borde" name="Tipo Documento">
                                                        
                                                         @for($i=0; $i < sizeof($grupos); $i++)                                                            
                                                             <option value="{{ $grupos[$i]->codigo }}" >{{ $grupos[$i]->siglas }}</option>
                                                          @endfor
                                                         </select>
                        
-                                                        <select id="datos5" class="Borde" name="Tipo Documento" required="required">
+                                                        <select id="modalidad" name="modalidad" class="Borde" name="Tipo Documento" required="required">
                                                         @for($k = 0;$k< sizeof($modalidades); $k++)    
                                                              <option value="{{ $modalidades[$k]->codigo_modalidad }}" >{{ $modalidades[$k]->nombre_modalidad }}</option>
                                                         @endfor
                                                         </select>
+
+                                                        <input type="text" id="codigo" name="codigo" hidden="true">
+                                                        <input type="text" id="editable" name="editable" hidden="true">
                                                     </div>
                                                 </div>
                                             </div>
-
-                                        </div>
-                                        <!-- Listado de los proyectos -->
-
-                                        <!--Botones-->
-                                        <div class="clearfix text-center box-footer">
-
-                                            <button  id="bajar" class="btn btn-primary" style="margin-top: 5%; width: 200px;"><i class="fa fa-hdd-o"></i><i>Actualizar información</i></button>
-
-                                        </div>
-                                    </form>
-
+                                            <!--Botones-->
+                                            <div style="width: 200px; margin: 0px auto"> 
+                                                <button type="submit" id="bajar" class="btn btn-primary" style="width: 200px; margin: 10px auto; "><i class="fa fa-hdd-o"></i><i>Actualizar información</i></button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </section>
                         </div>

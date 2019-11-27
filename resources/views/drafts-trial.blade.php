@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title', 'ADPROY')
+@section('title', 'Anteproyectos en juicio')
 
 @section('content')
  <!-- Content Wrapper. Contains page content -->
@@ -56,23 +56,16 @@
                                                 if($owndirectors[$i][1]->codigo_evaluacion!='0') $cont++;
                                                 if($owndirectors[$i][2]->codigo_evaluacion!='0') $cont++;
 
-                                                $rrr = $owndirectors[$i][0]->fecha_director;
-                                                $dateend = date("Y-m-d",strtotime($rrr."+ 3 month"));
-                                                $dateact = date("Y-m-d");
-                                                $dateend = (new DateTime($dateact))->diff(new DateTime($dateend));
+                                                $dateact = $owndirectors[$i][0]->fecha_evaluador;
+                                                $dateend = date("Y-m-d",strtotime($dateact."+ 3 month"));
+                                                //print_r($dateend);
+                                                $dateend = (new DateTime(date('Y')."-".date('m')."-".date('d')))->diff(new DateTime($dateend));
+                                                //print_r($dateend);
                                             ?>
                                             <td style="text-align: center;">{{(int)($div*$cont)}}%</td>
                                             <td>{{$dateend->days}} días</td>
                                         </tr>
                                     @endfor
-                                        <!--<th scope="row"></th>
-                                        <td>Alertas temprano un proyecto todo hardcore</td>
-                                        <td style="background-color:#f99d4c; color:#fff; width:100px;">Brayan arias</td>
-                                        <td style="background-color:#39dda7; color:#fff; width:100px;">Karen Brigid</td>
-                                        <td style="background-color:#39dda7; color:#fff; width:100px">Juan Camilo</td>
-                                        <td>20%</td>
-                                        <td>03:23:21</td>-->
-                                    
                                 </tbody>
                             </form>
                     </table>

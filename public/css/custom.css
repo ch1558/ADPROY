@@ -343,9 +343,9 @@
 }
 
 #Documento1,
-#datos3,
-#datos4,
-#datos5 {
+#grupo,
+#modalidad,
+#tema {
     width: 98%;
     height: 40px;
     margin: 1% auto;

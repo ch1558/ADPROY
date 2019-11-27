@@ -22,6 +22,8 @@ Route::post('meet','PageController@meetForm')->name('meet');
 Route::get('meet-calendar','PageController@showCalendar')->name('calendar');
 
 Route::get('drafts-list-student','PageController@draftsListStudent')->name('drafts-list-student');
+Route::post('drafts-list-student','PageController@editDraftStudent')->name('drafts-list-student');
+
 Route::get('drafts-list-teacher', 'PageController@draftsListTeacher')->name('drafts-list-teacher');
 Route::get('approve-draft','PageController@approveDraft')->name('approve-draft');
 Route::get('assign-evaluators','PageController@assignEvaluators')->name('assign-evaluators');
