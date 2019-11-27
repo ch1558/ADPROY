@@ -12,7 +12,6 @@
             <!-- Content Header (Page header) -->
             <h1>
                 Listado de Anteproyectos<small>Histórico de los anteproyectos</small>
-                <span class="text-muted pull-right" style="font-size: 10px;">Martes 04 de Junio de 2019</span>
             </h1>
         </section>
         <!-- Main content -->
@@ -26,11 +25,11 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th style="width:70%;">Titulo</th>
+                            <th class="col" scope="col">#</th>
+                            <th style="width:40%;">Titulo</th>
+                            <th style="width:35%;">Resumen</th>
                             <th style="width:15%;">Estado</th>
-                            <th style="width:5%;"></th>
                             <th style="width:5%;">Acciones</th>
-                            <th style="width:5%;"></th>
                         </tr>
                     </thead>
                     <tbody style="vertical-align: middle;">
@@ -40,14 +39,15 @@
                             @else
                                 <tr>
                             @endif
+                                <th scope="row">{{ $i+1 }}</th>
                                 <td>{{ $drafts[$i]->titulo_anteproyecto }}</td>
+                                <td>{{ $drafts[$i]->resumen_anteproyecto }}</td>
                                     @for($j=0; $j < sizeof($estados); $j++ )
                                         @if($drafts[$i]->codigo_estadoante == $estados[$j]->codigo_estadoante)
                                             <td>{{ $estados[$j]->nombre_estadoante }}</td>
                                         @endif
                                     @endfor
                                 </td>
-                                <td></td>
                                 <td><button id="bajar" class="btn btn-info"><i class="fa fa-download"></i><i> Descargar</i></button></td>
                             </tr>
                         @endfor

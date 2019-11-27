@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'ADPROY')
+@section('title', 'Asignación de jurados')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -12,7 +12,6 @@
             <!-- Content Header (Page header) -->
             <h1>
                 Asignación de Anteproyecto<small>Informacion basica de anteproyectos</small>
-                <span class="text-muted pull-right" style="font-size: 10px;">Martes 04 de Junio de 2019</span>
             </h1>
         </section>
         <!-- Main content -->
