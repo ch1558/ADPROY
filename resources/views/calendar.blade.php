@@ -1,8 +1,6 @@
 @extends('layouts.base')
 
-@section('title')
-    Reuniones del comite
-@endsection
+@section('title','Calendario de reuniones')
 
 @section('content')
 

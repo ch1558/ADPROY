@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'ADPROY')
+@section('title', 'Listado de Anteproyectos')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
