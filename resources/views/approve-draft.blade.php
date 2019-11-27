@@ -1,8 +1,5 @@
 @extends('layouts.base')
 
-<<<<<<< HEAD
-@section('title', 'Calificación de un anteproyecto')
-=======
 @section('title', 'Verificación de Anteproyectos')
 >>>>>>> 2270bfc705cf9a15612500203fc51b14b282e8f5
 
