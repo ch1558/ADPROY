@@ -33,7 +33,7 @@
                 <li class="treeview @if(Request::path()=='meet'||Request::path()=='meet-calendar') active @endif">
                     <a href="">
                         <i class="fa fa-book"></i>
-                        <span>Comite</span>
+                        <span>Comité</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">

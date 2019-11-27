@@ -1,5 +1,7 @@
 @extends('layouts.base')
 
+@section('title','Creación de reunión')
+
 @section('content')
     <!-- CONTENIDO DE DATOS PERSONALES -->
     <div class="content-wrapper" style="min-height: 808px;">
@@ -10,7 +12,7 @@
             </div>
             <!--Contenido del titulo-->
             <h1>
-                Comite Curricular - <small>Diligenciamiento de reuniones</small>
+                Comité Curricular - <small>Diligenciamiento de reuniones</small>
             </h1>
         </section>
 

@@ -12,7 +12,6 @@
             <!-- Content Header (Page header) -->
             <h1>
                 Asignación de Proyecto<small>Realizar asignacion de jurados</small>
-                <span class="text-muted pull-right" style="font-size: 10px;">Martes 04 de Junio de 2019</span>
             </h1>
         </section>
         <!-- Main content -->
@@ -26,12 +25,12 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th class="col" scope="col">#</th>
-                            <th class="col" scope="col">Título</th>
-                            <th class="col" scope="col">Resumen</th>
-                            <th class="col" scope="col">Tema</th>
-                            <th class="col" scope="col">Director</th>
-                            <th class="col" scope="col">Acciones</th>
+                            <th class="col" scope="col" style="width:5%">#</th>
+                            <th class="col" scope="col" style="width:10%">Título</th>
+                            <th class="col" scope="col" style="width:25%">Resumen</th>
+                            <th class="col" scope="col" style="width:20%">Tema</th>
+                            <th class="col" scope="col" style="width:20%">Director</th>
+                            <th class="col" scope="col" style="width:20%">Acciones</th>
                         </tr>
                     </thead>
                     <tbody style="vertical-align: middle;">
@@ -44,7 +43,7 @@
                             <td></td>
 
                             <td>
-                                        <li></li>
+                                <li></li>
                             </td>
 
                             <td style="width:30%;">
