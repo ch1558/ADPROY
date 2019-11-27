@@ -54,7 +54,7 @@
                                             <td>{{ auth()->user()->email }}</td>
                                         </tr>
                                         <tr>
-                                            <th>@if(auth()->user()->estado==1||auth()->user()->rol==2) Nombre del Departamento @else Nombre de la Carrera @endif</th>
+                                            <th>@if(auth()->user()->rol==1||auth()->user()->rol==2) Nombre del Departamento @else Nombre de la Carrera @endif</th>
                                             @for($j=0; $j < sizeof($dependencias); $j++)
                                                 @if(auth()->user()->codigo_dependencia == $dependencias[$j]->codigo_dependencia)
                                                     <td>{{ $dependencias[$j]->nombre_dependencia }}</td>
@@ -62,7 +62,7 @@
                                             @endfor
                                         </tr>
                                         <tr>
-                                            <th>Codigo</th>
+                                            <th>Código</th>
                                             <td>{{ auth()->user()->codigo_especifico }}</td>
                                         </tr>
                                         <tr>

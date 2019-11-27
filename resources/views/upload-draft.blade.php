@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'ADPROY')
+@section('title', 'Creación de Anteproyectos')
 
 @section('content')
 <div class="content-wrapper" style="min-height: 819px;">
@@ -9,8 +9,7 @@
         <div id="template_alerts"></div>
 
         <!-- Content Header (Page header) -->
-        <h1>Subir anteproyecto<small>Información básica del anteproyecto</small>
-            <span class="text-muted pull-right" style="font-size: 10px;">Martes 04 de Junio de 2019</span>
+        <h1>Subir Anteproyecto<small>Información básica del anteproyecto</small>
         </h1>
     </section>
 

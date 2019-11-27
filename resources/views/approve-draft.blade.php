@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'ADPROY')
+@section('title', 'Verificación de Anteproyectos')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -11,7 +11,7 @@
             </div>
             <!-- Content Header (Page header) -->
             <h1>
-                Calificación de Anteproyecto<small>Informacion basica del anteproyectos</small>
+                Calificación de Anteproyecto<small>Información basica del anteproyectos</small>
             </h1>
         </section>
         <!-- Main content -->
@@ -41,12 +41,12 @@
                                 <tr>
                             @endif
                             <th scope='row'>{{ $i+1 }}</th>
-                            <td>{{ $drafts[$i][0]->titulo_anteproyecto }}</td>
-                            <td>{{ $drafts[$i][0]->resumen_anteproyecto }}</td>
+                            <td>{{ $drafts[$i]->titulo_anteproyecto }}</td>
+                            <td>{{ $drafts[$i]->resumen_anteproyecto }}</td>
                             <td>
 
                             @for ($j=0; $j < sizeof($autores); $j++)
-                                @if ($autores[$j][0]==$drafts[$i][0]->codigo_anteproyecto)
+                                @if ($autores[$j][0]==$drafts[$i]->codigo_anteproyecto)
                                     @for ($k=0; $k < sizeof($estudiantes); $k++)
                                         @if ($autores[$j][1]==$estudiantes[$k]->id)
                                             <li>{{ $estudiantes[$k]->name }} {{ $estudiantes[$k]->last_name }}</li>

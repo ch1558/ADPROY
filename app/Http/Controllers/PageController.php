@@ -206,7 +206,7 @@ class PageController extends Controller{
         $j=0;
         for($i=0; $i < sizeof($ownDrafts); $i++){
             $draft = Anteproyecto::where('codigo_anteproyecto', $ownDrafts[$i]->codigo_anteproyecto)->get();
-            if($draft[0]->codigo_estadoante=='4'){
+            if($draft[0]->codigo_estadoante=='5'){
                 $autor = AutorAnteproyecto::where('codigo_anteproyecto', $ownDrafts[$i]->codigo_anteproyecto)->get();
 
                 for($k=0; $k<sizeof($autor); $k++){
@@ -214,7 +214,7 @@ class PageController extends Controller{
                     $autores[$j][1]=$autor[$k]->codigo_persona;
                     $j++;
                 }
-                array_push($drafts, $draft);
+                array_push($drafts, $draft[0]);
             }
         }
 

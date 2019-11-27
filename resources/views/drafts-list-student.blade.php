@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'ADPROY')
+@section('title', 'Historial de Anteproyectos')
 
 @section('content')
 
