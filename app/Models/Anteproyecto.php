@@ -8,9 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Anteproyecto extends Model{
     
     protected $table = 'anteproyecto';
+    protected $primaryKey = 'codigo_anteproyecto';
 
     public function store(Request $request){
         $newDraft = new Anteproyecto;
+
+        if(isset($request['editable'])){
+            $newDraft = Anteproyecto::find($request['codigo']);
+        }
 
         $newDraft->titulo_anteproyecto  = $request['titulo'];
         $newDraft->resumen_anteproyecto  = $request['resumen'];
@@ -18,14 +23,13 @@ class Anteproyecto extends Model{
         $newDraft->codigo_grupo = $request['grupo'];
         $newDraft->codigo_tema = $request['tema'];
         $newDraft->codigo_estadoante  = 1;
-
         $newDraft->save();
 
         return $newDraft;
     }
 
     function toString(){
-        return "'".$this->titulo_anteproyecto."','".$this->resumen_anteproyecto."','".$this->codigo_modalidad."','".$this->codigo_grupo."','".$this->codigo_tema."'";
+        return "'".$this->titulo_anteproyecto."','".$this->resumen_anteproyecto."','".$this->codigo_modalidad."','".$this->codigo_grupo."','".$this->codigo_tema."','".$this->codigo_anteproyecto."'";
     }
 
 }
