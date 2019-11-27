@@ -1,5 +1,7 @@
 @extends('layouts.base')
 
+@section('title','Calendario de reuniones')
+
 @section('content')
 
     <div class="content-wrapper" style="min-height: 808px;">
