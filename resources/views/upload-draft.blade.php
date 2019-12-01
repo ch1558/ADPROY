@@ -31,8 +31,8 @@
                     <div class="col-md-5">
                         <div class="row">
                             <div class="div-borde input-group mb-3" style="width: 100%;margin: 5px;padding: 10px 10px 0px 10px;">
-                                <select id="tema" class="Borde custom-select mr-sm-2" name="tema" style="padding: 5px;" required>
-                                    <option id="Documento1" value="" selected>Seleccione línea de investigación</option>
+                                <select id="tema" class="Borde custom-select mr-sm-2" name="tema" style="padding: 5px;">
+                                    <option id="Documento1"selected>Seleccione linea de investigacion</option>
                                     @for($i=0; $i < sizeof($lineas); $i++)
                                         <option value="{{ $lineas[$i]->codigo_tema }}" >{{ $lineas[$i]->nombre_tema }}</option>
                                     @endfor
@@ -41,8 +41,8 @@
                         </div>
                         <div class="row">
                             <div class="div-borde input-group mb-3" style="width: 100%;margin: 5px;padding: 10px 10px 0px 10px;">
-                                <select id="grupo" class="Borde custom-select mr-sm-2" name="grupo" style="padding: 5px;" required>
-                                    <option id="Documento1" value="" selected>Seleccione grupo de investigación</option>
+                                <select id="grupo" class="Borde custom-select mr-sm-2" name="grupo" style="padding: 5px;">
+                                    <option id="Documento1"selected>Seleccione grupo de investigacion</option>
                                     @for($i=0; $i < sizeof($grupos); $i++)
                                         <option value="{{ $grupos[$i]->codigo }}" >{{ $grupos[$i]->siglas }}</option>
                                     @endfor
@@ -51,8 +51,8 @@
                         </div>
                         <div class="row">
                             <div class="div-borde input-group mb-3" style="width: 100%;margin: 5px;padding: 10px 10px 0px 10px;">
-                                <select id="modalidad" class="Borde custom-select mr-sm-2" name="modalidad" style="padding: 5px;" required>
-                                    <option id="Documento1" value="" selected>Seleccione modalidad</option>
+                                <select id="modalidad" class="Borde custom-select mr-sm-2" name="modalidad" style="padding: 5px;">
+                                    <option id="Documento1"selected>Seleccione modalidad</option>
                                     @for($i=0; $i < sizeof($modalidad); $i++)
                                         <option value="{{ $modalidad[$i]->codigo_modalidad }}" >{{ $modalidad[$i]->nombre_modalidad }}</option>
                                     @endfor
