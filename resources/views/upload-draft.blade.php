@@ -3,6 +3,15 @@
 @section('title', 'Creación de Anteproyectos')
 
 @section('content')
+
+@if (session('status')!='false')
+    <script language="JavaScript">alert('<?php echo session('status') ?>')</script>
+@else
+    @php
+    session(['status' => 'false']);
+    @endphp
+@endif
+
 <div class="content-wrapper" style="min-height: 819px;">
     <section class="content-header">
         <!-- Alertas  -->
@@ -25,36 +34,36 @@
                 @csrf
                 <div class="row">
                     <div class="col-md-7">
-                        <textarea id="Datos1" name="titulo" class="form-control" rows="2" placeholder="Ingrese el titulo del proyecto" style="height: 40px; margin:10px" required="required"></textarea>
-                        <textarea id="Datos1" name="resumen" class="form-control" rows="3" placeholder="Ingrese el resumen de su propuesta de investigación" style="margin:10px" required="required"></textarea>
+                        <textarea id="Datos1" name="titulo" class="form-control" rows="2" placeholder="Ingrese el titulo del proyecto" style="height: 40px; margin:10px" required="required">@if(session('status')!='false') {{ session('titulo') }} @endif</textarea>
+                    <textarea id="Datos1" name="resumen" class="form-control" rows="3" placeholder="Ingrese el resumen de su propuesta de investigación" style="margin:10px" required="required">@if(session('status')!='false') {{ session('resumen') }} @endif</textarea>
                     </div>
                     <div class="col-md-5">
                         <div class="row">
                             <div class="div-borde input-group mb-3" style="width: 100%;margin: 5px;padding: 10px 10px 0px 10px;">
-                                <select id="tema" class="Borde custom-select mr-sm-2" name="tema" style="padding: 5px;">
-                                    <option id="Documento1"selected>Seleccione linea de investigacion</option>
+                                <select id="tema" class="Borde custom-select mr-sm-2" name="tema" style="padding: 5px;" required>
+                                    <option id="Documento1" value='' selected>Seleccione linea de investigación</option>
                                     @for($i=0; $i < sizeof($lineas); $i++)
-                                        <option value="{{ $lineas[$i]->codigo_tema }}" >{{ $lineas[$i]->nombre_tema }}</option>
+                                        <option value="{{ $lineas[$i]->codigo_tema }}" @if(session('tema')==($i+1) && session('status')!='false') selected @endif>{{ $lineas[$i]->nombre_tema }}</option>
                                     @endfor
                                 </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="div-borde input-group mb-3" style="width: 100%;margin: 5px;padding: 10px 10px 0px 10px;">
-                                <select id="grupo" class="Borde custom-select mr-sm-2" name="grupo" style="padding: 5px;">
-                                    <option id="Documento1"selected>Seleccione grupo de investigacion</option>
+                                <select id="grupo" class="Borde custom-select mr-sm-2" name="grupo" style="padding: 5px;" required>
+                                    <option id="Documento1" value='' selected>Seleccione grupo de investigación</option>
                                     @for($i=0; $i < sizeof($grupos); $i++)
-                                        <option value="{{ $grupos[$i]->codigo }}" >{{ $grupos[$i]->siglas }}</option>
+                                        <option value="{{ $grupos[$i]->codigo }}" @if(session('grupo')==($i+1) && session('status')!='false') selected @endif>{{ $grupos[$i]->siglas }}</option>
                                     @endfor
                                 </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="div-borde input-group mb-3" style="width: 100%;margin: 5px;padding: 10px 10px 0px 10px;">
-                                <select id="modalidad" class="Borde custom-select mr-sm-2" name="modalidad" style="padding: 5px;">
-                                    <option id="Documento1"selected>Seleccione modalidad</option>
+                                <select id="modalidad" class="Borde custom-select mr-sm-2" name="modalidad" style="padding: 5px;" required>
+                                    <option id="Documento1" value='' selected>Seleccione modalidad</option>
                                     @for($i=0; $i < sizeof($modalidad); $i++)
-                                        <option value="{{ $modalidad[$i]->codigo_modalidad }}" >{{ $modalidad[$i]->nombre_modalidad }}</option>
+                                        <option value="{{ $modalidad[$i]->codigo_modalidad }}" @if(session('modalidad')==($i+1) && session('status')!='false') selected @endif>{{ $modalidad[$i]->nombre_modalidad }}</option>
                                     @endfor
                                 </select>
                             </div>

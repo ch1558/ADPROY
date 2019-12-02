@@ -46,93 +46,73 @@ class PageController extends Controller{
                                     ->with(compact('directores'));
     }
 
-
     public function uploadDraft(Request $request){
+        session(['status' => 'false']);
         $draft = new Anteproyecto;
         $autoria = new AutorAnteproyecto;
         $edicion = new Director;
-        $newDraft = $draft->store($request);
         $owners = array();
         $editors = array();
         $autores = User::where('rol',3)->where('estado',1)->select('codigo_especifico')->get();
         $directores = User::where('rol','<',3)->where('estado',1)->select('codigo_especifico')->get();
+        $validationDirectors = true;
+        $validationAuthors = true;
 
-        switch ($request['autores']) {
-            case '1':
-                array_push($owners,$request['autor1']);
-                break;
-            case '2':
-                array_push($owners,$request['autor1']);
-                array_push($owners,$request['autor2']);
-                break;
-            case '3':
-                array_push($owners,$request['autor1']);
-                array_push($owners,$request['autor2']);
-                array_push($owners,$request['autor3']);
-                break;
-            case '4':
-                array_push($owners,$request['autor1']);
-                array_push($owners,$request['autor2']);
-                array_push($owners,$request['autor3']);
-                array_push($owners,$request['autor4']);
-                break;
-            default:
-                array_push($owners,$request['autor1']);
-                array_push($owners,$request['autor2']);
-                array_push($owners,$request['autor3']);
-                array_push($owners,$request['autor4']);
-                array_push($owners,$request['autor5']);
-                break;
+        $aux = 'autor';
+        for($i=1; $i<=$request['autores']; $i++){
+            $aux .= $i;
+            if(User::where('codigo_especifico',$request[$aux])->get()->toArray()==null){
+                $validationAuthors = false;
+                $i = 6;
+            } else
+                array_push($owners,$request[$aux]);
+            $aux = 'autor';
         }
 
-        switch ($request['directores']) {
-            case '1':
-                array_push($editors,$request['director1']);
-                break;
-            case '2':
-                array_push($editors,$request['director1']);
-                array_push($editors,$request['director2']);
-                break;
-            case '3':
-                array_push($editors,$request['director1']);
-                array_push($editors,$request['director2']);
-                array_push($editors,$request['director3']);
-                break;
-            case '4':
-                array_push($editors,$request['director1']);
-                array_push($editors,$request['director2']);
-                array_push($editors,$request['director3']);
-                array_push($editors,$request['director4']);
-                break;
-            default:
-                array_push($editors,$request['director1']);
-                array_push($editors,$request['director2']);
-                array_push($editors,$request['director3']);
-                array_push($editors,$request['director4']);
-                array_push($editors,$request['director5']);
-                break;
+        $aux = 'director';
+        for($i=1; $i<=$request['directores']; $i++){
+            $aux .= $i;
+            if(User::where('codigo_especifico',$request[$aux])->get()->toArray()==null){
+                $validationDirectors = false;
+                $i = 6;
+            } else
+                array_push($editors,$request[$aux]);
+            $aux = 'director';
         }
 
-        //Ingreso de autores
-        for($i=0; $i<sizeof($owners); $i++){
-            for($j=0; $j<sizeof($autores); $j++){
-                if($autores[$j]->codigo_especifico == $owners[$i] ){
-                    $own = User::where('codigo_especifico',$owners[$i])->get();
-                    $autoria->store($own[0]->id,$newDraft->id);
+        if($validationDirectors && $validationAuthors){
+            $newDraft = $draft->store($request);
+            
+            //Ingreso de autores
+            for($i=0; $i<sizeof($owners); $i++){
+                for($j=0; $j<sizeof($autores); $j++){
+                    if($autores[$j]->codigo_especifico == $owners[$i] ){
+                        $own = User::where('codigo_especifico',$owners[$i])->get();
+                        $autoria->store($own[0]->id,$newDraft->codigo_anteproyecto);
+                    }
                 }
             }
-        }
 
-        for($i=0; $i<sizeof($editors); $i++){
-            for($j=0; $j<sizeof($directores); $j++){
-                if($directores[$j]->codigo_especifico == $editors[$i] ){
-                    $own = User::where('codigo_especifico',$editors[$i])->get();
-                    $edicion->store($own[0]->id,$newDraft->id);
+            //Ingreso de directores
+            for($i=0; $i<sizeof($editors); $i++){
+                for($j=0; $j<sizeof($directores); $j++){
+                    if($directores[$j]->codigo_especifico == $editors[$i] ){
+                        $own = User::where('codigo_especifico',$editors[$i])->get();
+                        $edicion->store($own[0]->id,$newDraft->codigo_anteproyecto);
+                    }
                 }
             }
-        }
 
-        return redirect()->route('upload-draft');
+            return redirect()->route('upload-draft');
+        } else{
+            session(['titulo' => $request['titulo']]);
+            session(['resumen' => $request['resumen']]);
+            session(['tema' => $request['tema']]);
+            session(['grupo' => $request['grupo']]);
+            session(['modalidad' => $request['modalidad']]);
+            $aux = !$validationAuthors ? 'Autor Incorrecto' : 'Director Incorrecto';
+            return redirect()->route('upload-draft')->with('status', $aux);
+        }
     }
 
     public function draftsListStudent(){
