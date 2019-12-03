@@ -25,7 +25,7 @@
                 <div class="col-sm-6 col-md-3">
                     <div class="box box-primary thumbnail ">
                         <div class="box-header">
-                            <i class="fa fa-book"></i> Proyecto {{$j + 1 }}
+                            <i class="fa fa-book"></i> Anteproyecto {{$j + 1 }}
                         </div>
 
                         <div class="box box-body" >
