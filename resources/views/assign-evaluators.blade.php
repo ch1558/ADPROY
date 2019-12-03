@@ -3,6 +3,11 @@
 @section('title', 'Asignación de jurados')
 
 @section('content')
+
+    @if (session('status'))
+        <script language="JavaScript">alert('<?php echo session('status') ?>')</script>
+    @endif
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper" style="min-height: 819px;">
         <section class="content-header">
@@ -58,7 +63,7 @@
                                 @php
                                     $id = $ownDrafts[$i]->codigo_anteproyecto;
                                 @endphp
-                                <button id="subir" onclick="agregarModal({{ $id }})" class="btn btn-primary" data-toggle="modal" data-target="#asignar" ><i class="fa fa-user-circle"></i><i> Asignar Jurados </i></button>
+                                <button id="subir" onclick="agregarCodigo({{ $id }})" type = "submit" class="btn btn-primary" data-toggle="modal" data-target="#asignar" ><i class="fa fa-user-circle"></i><i> Asignar Jurados </i></button>
                             </td>
                         @endfor
                         </tr>
@@ -102,7 +107,7 @@
                                             </div>
                                             <div class=" box-footer text-center ">
                                                 <div>
-                                                <input type="text" id="editable" name="codigo" value="{{$id}}" hidden="true">
+                                                <input type="text" id="codigo" name="codigo" hidden="true">
                                                     <button id="bajar" type="submit" name="accion" value="aceptar" class="btn btn-primary " style="width: 180px; "><i class="fa fa-hdd-o "></i>&nbsp;<i>Guardar</i></button>
                                                     <br> <br>
                                                 </div>

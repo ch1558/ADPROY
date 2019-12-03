@@ -8,3 +8,7 @@ function agregarModal(titulo_anteproyecto, resumen_anteproyecto, codigo_modalida
     document.getElementById("codigo").value = codigo_anteproyecto;
     document.getElementById("editable").value = '1';
 }
+
+function agregarCodigo(codigo_anteproyecto){
+    document.getElementById("codigo").value = codigo_anteproyecto;
+}

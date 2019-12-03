@@ -289,15 +289,18 @@ class PageController extends Controller{
     }
 
     public function assignEvaluators(Request $request){
-        return $request['id'];
         $evaluators = new EvaluadorAnteproyecto;
-        if($request['accion']=='aceptar'){
+        $draft = new Anteproyecto;
+        if($request['accion']=='aceptar' && $request['teachers1']!=$request['teachers2'] && $request['teachers2']!=$request['teachers3']
+        && $request['teachers1']!=$request['teachers3']){
             for($i=1;$i<4;$i++){
-                $evaluators->store($request['teachers'.$i]);
+                $evaluators->store($request, $request['teachers'.$i]);
             }
-        }
-        
-        return redirect()->route('assign-evaluators');
+            $draft->editarEstadoAsignado($request['codigo']);
+            return redirect()->route('assign-evaluators');
+        } else{
+            return redirect()->route('assign-evaluators')->with('status', '¡Directores Iguales!');
+        }     
     }
 
     public function draftMeetings(Request $request){
