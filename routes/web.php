@@ -26,7 +26,9 @@ Route::post('drafts-list-student','PageController@editDraftStudent')->name('draf
 
 Route::get('drafts-list-teacher', 'PageController@draftsListTeacher')->name('drafts-list-teacher');
 Route::get('approve-draft','PageController@approveDraft')->name('approve-draft');
-Route::get('assign-evaluators','PageController@assignEvaluators')->name('assign-evaluators');
+
+Route::get('assign-evaluators','PageController@showAssignEvaluators')->name('assign-evaluators');
+Route::post('assign-evaluators','PageController@assignEvaluators')->name('assign-evaluators');
 
 Route::get('draft-meetings','PageController@showDraftMeetings')->name('draft-meetings');
 Route::post('draft-meetings','PageController@draftMeetings')->name('draft-meetings');

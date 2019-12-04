@@ -50,8 +50,8 @@
 
                         <div class="col-md-3 col-xs-11 div-borde input-group mb-3" style="margin: 5px 15px;">
                             <label>Anteproyecto</label>
-                            <select id="modalidad" class="Borde custom-select mr-sm-2" name="anteproyecto" style="padding: 5px;">
-                                <option id="Documento1" selected>Seleccione Anteproyecto</option>
+                            <select id="modalidad" class="Borde custom-select mr-sm-2" name="anteproyecto" style="padding: 5px;" required>
+                                <option id="Documento1" value='' selected>Seleccione Anteproyecto</option>
                                 @for($i=0; $i < sizeof($drafts); $i++)
                                     <option value="{{ $drafts[$i][0]->codigo_anteproyecto }}" >{{ $drafts[$i][0]->titulo_anteproyecto }}</option>
                                 @endfor

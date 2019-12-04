@@ -255,7 +255,7 @@ class PageController extends Controller{
         return view('reject')->with(compact('docentes'))->with(compact('estudiantes'));
     }
 
-    public function assignEvaluators(){
+    public function showAssignEvaluators(){
         $ownDrafts = Anteproyecto::where('codigo_estadoante','=','4')->get();
         $ownThemes = array();
         $ownDirectors = array();
@@ -280,9 +280,27 @@ class PageController extends Controller{
             }
         }
 
+        $teachers = User::where('rol','=','2')->where('estado','=','1')->get();
+
         return view('assign-evaluators')->with(compact('ownDrafts'))
                                         ->with(compact('ownThemes'))
-                                        ->with(compact('ownDirectors'));
+                                        ->with(compact('ownDirectors'))
+                                        ->with(compact('teachers'));
+    }
+
+    public function assignEvaluators(Request $request){
+        $evaluators = new EvaluadorAnteproyecto;
+        $draft = new Anteproyecto;
+        if($request['accion']=='aceptar' && $request['teachers1']!=$request['teachers2'] && $request['teachers2']!=$request['teachers3']
+        && $request['teachers1']!=$request['teachers3']){
+            for($i=1;$i<4;$i++){
+                $evaluators->store($request, $request['teachers'.$i]);
+            }
+            $draft->editarEstadoAsignado($request['codigo']);
+            return redirect()->route('assign-evaluators');
+        } else{
+            return redirect()->route('assign-evaluators')->with('status', '¡Directores Iguales!');
+        }     
     }
 
     public function draftMeetings(Request $request){

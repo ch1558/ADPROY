@@ -44,8 +44,8 @@
                                         <td>{{ $item->codigo_especifico }}</td>
                                         <input name="codigo_usuario" value="{{ $item->id }}" hidden="true">
                                         <td style="width:30%;">
-                                            <button name="accion" value="aceptar" class="btn btn-primary" type="submit"><i class="fa fa-check"></i><i> Aceptar</i></button>
-                                            <button name="accion" value="rechazar" class="btn btn-primary" type="submit"><i class="fa fa-close"></i><i> Denegar</i></button>
+                                            <button name="accion" value="aceptar" class="btn btn-success" type="submit"><i class="fa fa-check"></i><i> Aceptar</i></button>
+                                            <button name="accion" value="rechazar" class="btn btn-danger" type="submit"><i class="fa fa-close"></i><i> Denegar</i></button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -84,8 +84,8 @@
                                         <td>{{ $user->codigo_especifico }}</td>
                                         <input name="codigo_usuario" value="{{ $user->id }}" hidden="true">
                                         <td style="width:30%;">
-                                            <button name="accion" value="aceptar" class="btn btn-primary" type="submit"><i class="fa fa-check"></i><i> Aceptar</i></button>
-                                            <button name="accion" value="rechazar" class="btn btn-primary" type="submit"><i class="fa fa-close"></i><i> Denegar</i></button>
+                                            <button name="accion" value="aceptar" class="btn btn-success" type="submit"><i class="fa fa-check"></i><i> Aceptar</i></button>
+                                            <button name="accion" value="rechazar" class="btn btn-danger" type="submit"><i class="fa fa-close"></i><i> Denegar</i></button>
                                         </td>
                                     </tr>
                                 </tbody>

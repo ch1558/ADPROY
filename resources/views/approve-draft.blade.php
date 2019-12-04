@@ -1,7 +1,10 @@
 @extends('layouts.base')
 
 @section('title', 'Verificación de Anteproyectos')
->>>>>>> 2270bfc705cf9a15612500203fc51b14b282e8f5
+<<<<<<< HEAD
+
+=======
+>>>>>>> 24c873bc70e44c0aae5b25d621336bd85e19ab9d
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
