@@ -45,6 +45,8 @@ Route::get('project-status','PageController@projectstatus')->name('project-statu
 Route::get('drafts-record','PageController@draftsRecord')->name('drafts-record');
 Route::get('drafts-list-admin','PageController@draftsListAdmin')->name('drafts-list-admin');
 
+Route::get('director-approve','PageController@showDirectorApprove')->name('director-approve');
+Route::post('director-approve','PageController@directorApprove')->name('director-approve');
 
 /*
 

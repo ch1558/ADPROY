@@ -30,16 +30,19 @@
                     </ul>
                 </li>
 
-                <li class="treeview @if(Request::path()=='drafts-list-teacher'||Request::path()=='approve-draft') active @endif">
+                <li class="treeview @if(Request::path()=='drafts-list-teacher'||Request::path()=='approve-draft'||Request::path()=='director-approve') active @endif">
                     <a href="">
                         <i class="fa fa-book"></i><span>Anteproyectos</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
+                        <li class="hvr-icon-back2 @if(Request::path()=='director-approve') active @endif">
+                            <a href="{{ route('director-approve') }}">Pendientes por aprobar</a>
+                        </li>
                         <li class="hvr-icon-back2 @if(Request::path()=='drafts-list-teacher') active @endif">
                             <a href="{{ route('drafts-list-teacher') }}">Listado de anteproyectos</a>
                         </li>
                         <li class="hvr-icon-back2 @if(Request::path()=='approve-draft') active @endif">
-                            <a href="{{ route('approve-draft') }}">Pendientes de calificacion</a>
+                            <a href="{{ route('approve-draft') }}">Pendientes por evaluar</a>
                         </li>
                     </ul>
                 </li>
