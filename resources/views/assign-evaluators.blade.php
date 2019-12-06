@@ -4,7 +4,7 @@
 
 @section('content')
 
-    @if (session('status'))
+    @if (session('status')=='¡Directores Iguales!')
         <script language="JavaScript">alert('<?php echo session('status') ?>')</script>
     @endif
 
@@ -126,11 +126,4 @@
 
 @section('scripts')
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-<script>
-    function showInfoDraft(id) {
-        let url = window.location.href;
-        url = url.split('#')[0] + '#asignar?id=' + id;
-        window.location.href = url;            
-    }
-</script>
 @endsection

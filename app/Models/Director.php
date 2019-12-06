@@ -18,4 +18,9 @@ class Director extends Model{
         $draftJudge->save();
     }
 
+    function toString(){
+        return "'".$this->codigo_persona."'";
+    }
+
+
 }

@@ -14,11 +14,8 @@ use App\Models\Reunion;
 use App\Models\ReunionAnte;
 use App\Models\Tema;
 use App\Models\Rol;
-use App\Models\TemaAnteproyecto;
 use App\User;
 use Illuminate\Http\Request;
-
-use DB;
 
 class PageController extends Controller{
 
@@ -394,4 +391,20 @@ class PageController extends Controller{
         return view('project-status');
     }
 
+    public function showDirectorApprove(){
+        $drafts = Director::join('anteproyecto','director.codigo_anteproyecto','=','anteproyecto.codigo_anteproyecto')
+                  ->where('codigo_persona',auth()->user()->id)->get();
+        $themes = Tema::all();
+        $modalities = Modalidad::all();
+        $groups = Grupo::all();
+        $people = User::all();
+
+        return view('director-approve')->with(compact('drafts'))
+                                       ->with(compact('themes'));
+    }
+
+    public function directorApprove(Request $request){
+        return $request;
+        return redirect()->route('director-approve');
+    }
 }
