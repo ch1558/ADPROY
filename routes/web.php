@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('/', 'Auth\LoginController@karen')->name('login');
+Route::post('/', 'Auth\LoginController@login')->name('login');
 
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register')->name('register');
