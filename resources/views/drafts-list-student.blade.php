@@ -77,8 +77,8 @@
                         <div class="box box-footer text-center" >
                             <button id="bajar" class="btn btn-info"><i class="fa fa-download"></i><i></i></button>&nbsp&nbsp
                             @php $f = $drafts[$j][0]->toString(); @endphp
-                            <button onclick="agregarModal({{ $f }})" type = "submit" id="bajar" class="btn btn-warning"><i class="fa fa-edit"></i></button>&nbsp&nbsp
-                            <button id="subir" class="btn btn-success" data-toggle="modal" data-target="#registrar"><i class="fa fa-send"></i><i></i></button>
+                            <button onclick="agregarModal({{ $f }})" type = "submit" id="bajar" class="btn btn-warning" @if($drafts[$j][0]->codigo_estadoante=='3') disabled="true" @endif><i class="fa fa-edit"></i></button>&nbsp&nbsp
+                            <button id="subir" class="btn btn-success" data-toggle="modal" data-target="#registrar" @if($drafts[$j][0]->codigo_estadoante=='3') disabled="true" @endif><i class="fa fa-send"></i><i></i></button>
                         </div>
                     </div>
             </div>
