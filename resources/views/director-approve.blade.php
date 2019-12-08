@@ -46,12 +46,7 @@
 
                     <td style="width:30%;">
                         @php
-                            $id = $drafts[$i]->codigo_anteproyecto;
-                            $aux = $drafts[0];
-                        @endphp
-                        <input type="text" id="aux" name="aux" value='{{$aux}}' hidden="true">
-                        @php
-                            $datos = "'".$drafts[$i]->titulo_anteproyecto."','".$drafts[$i]->resumen_anteproyecto."','".$themes[$drafts[$i]->codigo_modalidad]."','".$drafts[$i]->codigo_grupo."','".$drafts[$i]->codigo_tema."','".$drafts[$i]->codigo_anteproyecto."',".$drafts[$i]->toString();
+                            $datos = "'".$drafts[$i]->titulo_anteproyecto."','".$drafts[$i]->resumen_anteproyecto."','".$modalities[$drafts[$i]->codigo_modalidad]->nombre_modalidad."','".$groups[$drafts[$i]->codigo_grupo]->nombre."','".$themes[$drafts[$i]->codigo_tema]->nombre_tema."','".$drafts[$i]->codigo_anteproyecto."','".$directorsAuthors[$i][0]."','".$directorsAuthors[$i][1]."'";  
                         @endphp
                         <button id="subir" onclick="verificarAnteproyecto({{ $datos }})" type = "submit" class="btn btn-primary" data-toggle="modal" data-target="#verificar" ><i class="fa fa-user-circle"></i><i> Ver </i></button>
                     </td>
@@ -80,26 +75,45 @@
                                     <div class="box-header with-border">
                                         <i class="fas fa-users"></i> Verificar anteproyecto
                                     </div>
-                                    <br>
                                     <form method="POST" action="{{ route('director-approve') }}">
                                         @csrf
-                                        <div>
-                                            <label>Título</label><br>
+                                        <div class=" box-footer text-center ">
+                                            <label>Título</label>
                                             <p id="titulo"></p>
-                                            <label>Resumen</label><br>
-                                            <p id="resumen"></p>
-                                            <label>Tema</label><br>
-                                            <p id="modalidad" ></p>
-                                            <label>Modalidad</label>
+                                            <hr>
+                                            <label>Resumen</label>
+                                            <p id="resumen" style="text-align: justify; margin: 10px;"></p>
+                                            <hr>
+                                            <div id="comite-meet">
+                                                <div class="col-md-6 col-xs-11">
+                                                    <label>Tema</label> 
+                                                    <p id="tema"></p> 
+                                                </div>
+                                                <div class="col-md-6 col-xs-11">
+                                                    <label> Modalidad</label>
+                                                    <p id="modalidad" ></p>
+                                                </div>
+                                            </div>
+                                            <hr>
                                             <label>Grupo</label>
-                                            <label>Autor</label>
-                                            <label>Director</label>
+                                            <p id="grupo" ></p>
+                                            <hr>
+                                            <div id="comite-meet">
+                                                <div class="col-md-6 col-xs-11">
+                                                    <label>Autor(es)</label><br>
+                                                    <p id='autores'></p>
+                                                </div>
+                                                <div class="col-md-6 col-xs-11">
+                                                    <label>Director(es)</label>
+                                                    <p id="directores"></p>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class=" box-footer text-center ">
                                             <div>
                                                 <input type="text" id="codigo" name="codigo" hidden="true">
-                                                <button id="bajar" type="submit" name="accion" value="aceptar" class="btn btn-primary " style="width: 180px; "><i class="fa fa-hdd-o "></i>&nbsp;<i>Aprobar</i></button>
-                                                <button id="bajar" type="submit" name="accion" value="cancelar" class="btn btn-primary " style="width: 180px; "><i class="fa fa-hdd-o "></i>&nbsp;<i>Rechazar</i></button>
+                                                <button id="accion" type="submit" name="accion" value="aceptar" class="btn btn-primary " style="width: 150px; "><i class="fa fa-check "></i>&nbsp;<i>Aprobar</i></button>
+                                                <button id="accion" type="submit" name="accion" value="cancelar" class="btn btn-primary " style="width: 150px; "><i class="fa fa-close "></i>&nbsp;<i>Rechazar</i></button>
                                                 <br> <br>
                                             </div>
                                         </div>

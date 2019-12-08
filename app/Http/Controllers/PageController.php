@@ -393,18 +393,53 @@ class PageController extends Controller{
 
     public function showDirectorApprove(){
         $drafts = Director::join('anteproyecto','director.codigo_anteproyecto','=','anteproyecto.codigo_anteproyecto')
-                  ->where('codigo_persona',auth()->user()->id)->get();
+                            ->where('anteproyecto.codigo_estadoante','=','1')
+                            ->where('codigo_persona',auth()->user()->id)->get();
         $themes = Tema::all();
         $modalities = Modalidad::all();
         $groups = Grupo::all();
         $people = User::all();
+        $directorsAuthors = array();
+        $directors = '';
+        $authors = '';
+
+        for($i=0;$i<sizeof($drafts);$i++){
+            $draftDirectors = Director::where('codigo_anteproyecto',$drafts[$i]->codigo_anteproyecto)->get();
+            for($j=0; $j<sizeof($draftDirectors); $j++){
+                if($j!=0) $directors .= '<br>';
+                $query =  User::find($draftDirectors[$j]->codigo_persona);
+                $directors .= $query->name.' '.$query->last_name; 
+            }
+            $directorsAuthors[$i][0] = $directors;
+            $draftAuthors = AutorAnteproyecto::where('codigo_anteproyecto',$drafts[$i]->codigo_anteproyecto)->get();
+            for($j=0; $j<sizeof($draftAuthors); $j++){
+                if($j!=0) $authors .= '<br>';
+                $query =  User::find($draftAuthors[$j]->codigo_persona);
+                $authors .= $query->name.' '.$query->last_name;
+            }
+            $directorsAuthors[$i][1] = $authors;
+            $directors = '';
+            $authors = '';
+        }
 
         return view('director-approve')->with(compact('drafts'))
-                                       ->with(compact('themes'));
+                                       ->with(compact('themes'))
+                                       ->with(compact('modalities'))
+                                       ->with(compact('groups'))
+                                       ->with(compact('directorsAuthors'));
     }
 
     public function directorApprove(Request $request){
-        return $request;
+        $approveDraft = Anteproyecto::find($request['codigo']);
+
+        if($request['accion']=='aceptar'){
+            $approveDraft->codigo_estadoante = 2;
+        } else{
+            $approveDraft->codigo_estadoante = 3;
+        }
+
+        $approveDraft->save();
+
         return redirect()->route('director-approve');
     }
 }
