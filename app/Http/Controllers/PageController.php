@@ -54,6 +54,9 @@ class PageController extends Controller{
         $directores = User::where('rol','<',3)->where('estado',1)->select('codigo_especifico')->get();
         $validationDirectors = true;
         $validationAuthors = true;
+        $verification = AutorAnteproyecto::join('anteproyecto','anteproyecto.codigo_anteproyecto','=','autor_anteproyecto.codigo_anteproyecto')
+                                         ->where('anteproyecto.codigo_estadoante','!=','3')
+                                         ->where('codigo_persona', auth()->user()->id)->get();
 
         $aux = 'autor';
         for($i=1; $i<=$request['autores']; $i++){
@@ -77,7 +80,7 @@ class PageController extends Controller{
             $aux = 'director';
         }
 
-        if($validationDirectors && $validationAuthors){
+        if($validationDirectors && $validationAuthors && sizeof($verification)==0){
             $newDraft = $draft->store($request);
             
             //Ingreso de autores
@@ -102,12 +105,17 @@ class PageController extends Controller{
 
             return redirect()->route('upload-draft');
         } else{
+            if(sizeof($verification)!=0)
+                $aux = '¡Ya tiene un anteproyecto en curso!';
+            else
+                $aux = !$validationAuthors ? 'Autor Incorrecto' : 'Director Incorrecto';
+
             session(['titulo' => $request['titulo']]);
             session(['resumen' => $request['resumen']]);
             session(['tema' => $request['tema']]);
             session(['grupo' => $request['grupo']]);
             session(['modalidad' => $request['modalidad']]);
-            $aux = !$validationAuthors ? 'Autor Incorrecto' : 'Director Incorrecto';
+            
             return redirect()->route('upload-draft')->with('status', $aux);
         }
     }

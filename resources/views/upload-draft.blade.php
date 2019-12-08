@@ -4,7 +4,7 @@
 
 @section('content')
 
-@if (session('status')=='Autor Incorrecto' || session('status')=='Director Incorrecto')
+@if (session('status')=='Autor Incorrecto' || session('status')=='Director Incorrecto' || session('status')=='¡Ya tiene un anteproyecto en curso!')
     <script language="JavaScript">alert('<?php echo session('status') ?>')</script>
 @else
     @php
