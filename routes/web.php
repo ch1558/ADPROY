@@ -31,6 +31,10 @@ Route::get('approve-draft','PageController@approveDraft')->name('approve-draft')
 Route::get('assign-evaluators','PageController@showAssignEvaluators')->name('assign-evaluators');
 Route::post('assign-evaluators','PageController@assignEvaluators')->name('assign-evaluators');
 
+Route::get('evaluate-draft','PageController@showEvaluateDraft')->name('evaluate-draft');
+Route::post('evaluate-draft','PageController@evaluateDraft')->name('evaluate-draft');
+
+
 Route::get('draft-meetings','PageController@showDraftMeetings')->name('draft-meetings');
 Route::post('draft-meetings','PageController@draftMeetings')->name('draft-meetings');
 Route::post('approve-meetings','PageController@approveMeetings')->name('approve-meetings');

@@ -10,9 +10,7 @@
             <div id="template_alerts">
             </div>
             <!-- Content Header (Page header) -->
-            <h1>
-                Calificación de Anteproyecto<small>Información basica del anteproyectos</small>
-            </h1>
+            <h1>Calificación de Anteproyecto<small> información basica del anteproyectos</small></h1>
         </section>
         <!-- Main content -->
         <section class="content">
@@ -25,11 +23,11 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th class="col" scope="col">#</th>
-                            <th class="col" scope="col">Titulo</th>
-                            <th class="col" scope="col">Resumen</th>
-                            <th class="col" scope="col">Autores</th>
-                            <th class="col" scope="col">Acciones</th>
+                            <th class="col" style="width:3%;" scope="col">#</th>
+                            <th class="col" style="width:22%;" scope="col">Titulo</th>
+                            <th class="col" style="width:45%;" scope="col">Resumen</th>
+                            <th class="col" style="width:15%;" scope="col">Autores</th>
+                            <th class="col" style="width:15%;" scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody style="vertical-align: middle;">
@@ -42,7 +40,7 @@
                             @endif
                             <th scope='row'>{{ $i+1 }}</th>
                             <td>{{ $drafts[$i]->titulo_anteproyecto }}</td>
-                            <td>{{ $drafts[$i]->resumen_anteproyecto }}</td>
+                            <td style="text-align: justify;padding: 5px 20px;">{{ $drafts[$i]->resumen_anteproyecto }}</td>
                             <td>
 
                             @for ($j=0; $j < sizeof($autores); $j++)
@@ -57,7 +55,7 @@
                             </td>
 
                             <td style="width:30%;">
-                                <button id="subir" class="btn btn-primary" data-toggle="modal" data-target="#registrar" ><i class="fa fa-user-circle"></i><i> Emitir Decision</i></button>
+                                <a id="subir" href="{{ route('evaluate-draft') }}" class="btn btn-primary"><i class="fa fa-user-circle"></i><i> Emitir Decision</i></a>
                             </td>
                         @endfor
                         </tr>

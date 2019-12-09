@@ -474,6 +474,16 @@ class PageController extends Controller{
         return redirect()->route('director-approve');
     }
 
+<<<<<<< HEAD
+    public function showEvaluateDraft(){
+        return view('evaluate-draft');
+    }
+
+    public function evaluateDraft(Request $request){
+        return $request;
+    }
+
+=======
     public function showCreateProject(){
         $date = date("Y-m-d",strtotime(date("Y-m-d")."- 2 month"));
         $meetings = Reunion::where('fecha_reunion','>',$date)->get();
@@ -494,4 +504,5 @@ class PageController extends Controller{
 
         return redirect()->route('create-project');
     }
+>>>>>>> 11e40d3ff7e6ab6dc08df2a83dcb244aa7305b4f
 }
