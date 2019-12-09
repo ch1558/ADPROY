@@ -23,6 +23,7 @@ Route::get('meet-calendar','PageController@showCalendar')->name('calendar');
 
 Route::get('drafts-list-student','PageController@draftsListStudent')->name('drafts-list-student');
 Route::post('drafts-list-student','PageController@editDraftStudent')->name('drafts-list-student');
+Route::post('drafts-list-student','PageController@uploadDocuments')->name('uploading-documents');
 
 Route::get('drafts-list-teacher', 'PageController@draftsListTeacher')->name('drafts-list-teacher');
 Route::get('approve-draft','PageController@approveDraft')->name('approve-draft');

@@ -23,3 +23,25 @@ function verificarAnteproyecto(titulo_anteproyecto, resumen_anteproyecto, modali
     document.getElementById("directores").innerHTML = directores;
     document.getElementById("autores").innerHTML = autores;
 }
+
+function documentos(codigo,ugad,ante,comite){
+    document.getElementById("code").value = codigo;
+
+    if(ante == '1'){
+        document.getElementById("boolante").innerHTML = '(documento no ha sido cargado)';
+    }else{
+        document.getElementById("boolante").innerHTML = '(documento ya fue cargado)';
+    }
+
+    if(ugad == '1'){
+        document.getElementById("boolugad").innerHTML = '(documento no ha sido cargado)';
+    }else{
+        document.getElementById("boolugad").innerHTML = '(documento ya fue cargado)';
+    }
+
+    if(comite == '2'){
+        document.getElementById("send").disabled = false;
+    }else{
+        document.getElementById("send").disabled = true;
+    }
+}

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
+
 use App\Models\Anteproyecto;
 use App\Models\AutorAnteproyecto;
 use App\Models\EvaluadorAnteproyecto;
@@ -155,6 +158,23 @@ class PageController extends Controller{
         return redirect()->route('drafts-list-student');
     }
 
+    public function uploadDocuments(Request $request){
+        $draft = New Anteproyecto;
+        $send = $draft->addDocument($request);
+
+        if($request['send'] == "send"){
+            if($send->existAnteproyecto() == 1)
+                return redirect()->route('drafts-list-student')->with('status', '¡Te faltan el anteproyecto!');
+            
+            if($send->existUgad() == 1)
+                return redirect()->route('drafts-list-student')->with('status', '¡Te faltan la carta de radico en el UGAD!');
+            
+            $send->codigo_estadoante = 4;
+            $send->save();
+        }
+
+        return redirect()->route('drafts-list-student');
+    }
 
     public function draftsListTeacher(){
         $estados = EstadoAnteproyecto::all();
@@ -450,4 +470,5 @@ class PageController extends Controller{
 
         return redirect()->route('director-approve');
     }
+
 }
