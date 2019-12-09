@@ -3,6 +3,9 @@
 @section('title','Creación de Proyectos')
 
 @section('content')
+    @if (session('status')=='¡El proyecto ya ha sido creado!')
+        <script language="JavaScript">alert('<?php echo session('status') ?>')</script>
+    @endif
     <div class="content-wrapper" style="min-height: 819px;">
         <section class="content-header">
             <!-- Alertas  -->
