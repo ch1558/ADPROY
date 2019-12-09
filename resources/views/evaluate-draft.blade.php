@@ -12,33 +12,36 @@
             <h1> Evaluación de un Anteproyecto </h1>
         </section>
 
-        <section class="content" style="padding-bottom: 5px;">
+        <section class="content" style="padding-bottom: 5px;min-height: 100px">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <i class="fa fa-edit"></i> Datos del Anteproyecto
                 </div>
 
+                
                 <div class="box-body no-padding">
                     <div class="row">
                         <div class="col-md-3">
                             <h5 style="text-align:center;text-transform:uppercase"><strong>Título</strong></h5>
-                            <p style="text-align:center;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo sequi minima eaque quaerat tenetur nesciunt 
-                            cumque aliquam, assumenda totam? Ad obcaecati itaque laudantium dicta praesentium eius, odio ratione quae unde?</p>
+                            <p style="text-align:center;">{{ $eval->titulo_anteproyecto }}</p>
                         </div>
                         <div class="col-md-5">
                             <h5 style="text-align:center;text-transform:uppercase"><strong>Resumen</strong></h5>
-                            <p style="text-align:justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo sequi minima eaque quaerat tenetur nesciunt 
-                            cumque aliquam, assumenda totam? Ad obcaecati itaque laudantium dicta praesentium eius, odio ratione quae unde?
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus esse atque officiis quos neque rerum commodi, 
-                            alias quod dolores maiores itaque odio totam ea minus voluptatem quo cumque facere? Labore.</p>
+                            <p style="text-align:justify;">{{ $eval->resumen_anteproyecto }}</p>
                         </div>
                         <div class="col-md-2">
                             <h5 style="text-align:center;text-transform:uppercase"><strong>tematica</strong></h5>
-                            <p style="text-align:center;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <p style="text-align:center;">
+                                @for($i=0; $i < sizeof($themes); $i++)
+                                    @if($themes[$i]->codigo_tema == $eval->codigo_tema)
+                                        {{ $themes[$i]->nombre_tema }}
+                                    @endif
+                                @endfor
+                            </p>
                         </div>
                         <div class="col-md-2">
                             <h5 style="text-align:center;text-transform:uppercase"><strong>Documentos</strong></h5>
-                            <button id="bajar" class="btn btn-info" wfd-id="50"><i class="fa fa-download"></i><i> Descargar</i></button>
+                            <a href="{{ asset($eval->url_anteproyecto) }}" style="width:100%;" target="blank" id="bajar" class="btn btn-info" @if($eval->existAnteproyecto()==1) disabled="true" @endif><i class="fa fa-download"></i><i>Descargar</i></a>
                         </div>
                     </div>
                 </div>

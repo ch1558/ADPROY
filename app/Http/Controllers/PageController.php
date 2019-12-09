@@ -474,12 +474,16 @@ class PageController extends Controller{
         return redirect()->route('director-approve');
     }
 
-    public function showEvaluateDraft(){
-        return view('evaluate-draft');
+    public function showEvaluateDraft($draft){
+        $eval = Anteproyecto::find($draft);
+        $themes = Tema::all();
+        return view('evaluate-draft')->with(compact('eval'))
+                                    ->with(compact('themes'));
     }
 
     public function evaluateDraft(Request $request){
-        return $request;
+        $ficha = new FichaEvaluacion;
+        $eva = $ficha->store($request);
     }
 
     public function showCreateProject(){

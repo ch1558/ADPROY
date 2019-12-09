@@ -55,7 +55,7 @@
                             </td>
 
                             <td style="width:30%;">
-                                <a id="subir" href="{{ route('evaluate-draft') }}" class="btn btn-primary"><i class="fa fa-user-circle"></i><i> Emitir Decision</i></a>
+                                <a id="subir" href="{{ route('evaluate-draft', $drafts[$i]->codigo_anteproyecto ) }}" class="btn btn-primary"><i class="fa fa-user-circle"></i><i> Emitir Decision</i></a>
                             </td>
                         @endfor
                         </tr>
