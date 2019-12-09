@@ -496,6 +496,7 @@ class PageController extends Controller{
                              ->where('codigo_estadoante','!=','3')
                              ->where('autor_anteproyecto.codigo_persona',auth()->user()->id)->get();
 
+        $verification = Carta::where('anteproyecto',$draft[0]->codigo_anteproyecto)->get();
         $newSchedule = $schedule->store($request);  
         $newLetter = $letter->store($request, $draft[0]->codigo_anteproyecto);
         $project->store($newSchedule->id, $newLetter->id);
