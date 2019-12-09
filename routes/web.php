@@ -43,8 +43,10 @@ Route::get('approve-meetings','PageController@showApproveMeetings')->name('appro
 Route::get('finish-project','PageController@finishProject')->name('finish-project');
 Route::get('project-objectives','PageController@showProjectObjectives')->name('project-objectives');
 Route::post('project-objectives','PageController@projectObjectives')->name('project-objectives');
+
 Route::get('accept-goals','PageController@showAcceptGoals')->name('accept-goals');
 Route::post('accept-goals','PageController@acceptGoals')->name('accept-goals');
+
 Route::get('drafts-trial','PageController@draftsTrial')->name('drafts-trial');
 Route::get('assign-evaluators-project','PageController@assignEvaluatorsproject')->name('assign-evaluators-project');
 Route::get('project-status','PageController@projectstatus')->name('project-status');

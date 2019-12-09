@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Hitos extends Model{
     
     protected $table = 'hitos';
+    protected $primaryKey = 'codigo';
+
 
     public function store(Request $request, $schedule){
         $newObjective = new Hitos;
@@ -24,7 +26,7 @@ class Hitos extends Model{
     }
 
     public function cambiarEstado($codigo,$estado){
-        $newObjective = Hitos::where('codigo','=',$codigo)->get();
+        $newObjective = Hitos::find($codigo);
         $newObjective->estado = $estado;
         $newObjective->save();
     }
