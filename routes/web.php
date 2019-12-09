@@ -59,6 +59,9 @@ Route::post('director-approve','PageController@directorApprove')->name('director
 Route::get('create-project','PageController@showCreateProject')->name('create-project');
 Route::post('create-project','PageController@createProject')->name('create-project');
 
+Route::get('active-projects','PageController@showActiveProjects')->name('active-projects');
+Route::post('active-projects','PageController@activeProjects')->name('active-projects');
+
 /*
 
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');

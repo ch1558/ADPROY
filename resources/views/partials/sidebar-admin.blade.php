@@ -71,18 +71,15 @@
 
 
                 <!-- Proyectos -->
-                <li class="treeview">
+                <li class="treeview @if(Request::path()=='active-projects') active @endif">
                     <a href="">
                         <i class="fa fa-calendar-check-o"></i>
                         <span>Proyectos</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="hvr-icon-back2">
-                            <a href=""> Listado de Proyectos</a>
-                        </li>
-                        <li class="hvr-icon-back2">
-                            <a href=""> Asignar jurados</a>
+                        <li class="hvr-icon-back2 @if(Request::path()=='active-projects') active @endif">
+                            <a href="{{ route('active-projects') }}"> Listado de activos</a>
                         </li>
                     </ul>
                 </li>

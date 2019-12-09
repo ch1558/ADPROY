@@ -17,6 +17,7 @@ use App\Models\Reunion;
 use App\Models\ReunionAnte;
 use App\Models\Tema;
 use App\Models\Cronograma;
+use App\Models\FichaEvaluacion;
 use App\Models\Proyecto;
 use App\Models\Carta;
 use App\Models\Hitos;
@@ -570,5 +571,26 @@ class PageController extends Controller{
             return redirect()->route('create-project')->with('status', '¡El proyecto ya ha sido creado!');
         }
         
+    }
+
+    public function showActiveProjects(){
+        $projects = Proyecto::where('estado','!=','1')
+                            ->where('estado','!=','5')->get();
+        $ownProjects = array();
+        $ownDirectors = array();
+        $authors = array();
+
+        for($i=0; $i<sizeof($projects); $i++){
+            $drafts = Anteproyecto::join('carta', 'carta.anteproyecto', '=', 'anteproyecto.codigo_anteproyecto')
+                                  ->where('carta.codigo',$projects[$i]->carta_aprobacion)->get();
+            $director = Director::where('codigo_anteproyecto',$drafts[0]->codigo_anteproyecto);
+            array_push($ownProjects,$drafts);
+        }
+        return view('active-projects')->with(compact('projects'))
+                                      ->with(compact('ownProjects'));
+    }
+
+    public function activeProjects(Request $request){
+        return redirect()->route('active-projects');
     }
 }
