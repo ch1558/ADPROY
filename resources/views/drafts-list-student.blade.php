@@ -16,8 +16,6 @@
     </section>
 
     <section class="content">
-
-
         <div class="box-body no-padding clearfix">
             <div class="row">
                 
@@ -28,71 +26,48 @@
                             <i class="fa fa-book"></i> Anteproyecto {{$j + 1 }}
                         </div>
 
-                        <div class="box box-body" >
+                        <div class="box box-body" style="margin: 5px auto;">
                             <div class="caption clearfix text-center" style="background-color:#fff; height:340px;">
-                                
+                                <h5 style="text-transform: uppercase; line-height: 1.3;"><strong>{{ $drafts[$j][0]->titulo_anteproyecto }}</strong>
+                                @for($i = 0; $i < sizeof($estados); $i++)
+                                    @if(!empty($estados[$i]) && $drafts[$j][0]->codigo_estadoante == $estados[$i]->codigo_estadoante)
+                                        <span class="text-muted">({{$estados[$i]->nombre_estadoante}})</span>
+                                    @endif
+                                @endfor
+                                </h5>
 
+                                <hr style="margin: 5px auto;width: 85%;">
 
-                                    <table class="table table-condensed table-hover">
-                                        <tbody>
-                                            <tr>
-                                                <td><h5 style="text-transform: uppercase;"><strong>{{ $drafts[$j][0]->titulo_anteproyecto }}</strong></h5></td>
-                                            </tr>
-                                            <tr><td>
-                                                <h5>DIRECTORES:</h5>
-                                                @for($i = 0; $i < sizeof($directors); $i++) 
-                                                    @if(!empty($directors[$j][$i])) 
-                                                        @if($drafts[$j][0]->codigo_anteproyecto == $directors[$j][$i]->codigo_anteproyecto)
-                                                            <p>{{$directors[$j][$i]->name}} {{$directors[$j][$i]->last_name}}</p>
-                                                        @endif
-                                                    @endif
-                                                @endfor
-                                            </td></tr> 
-                                            <tr><td>
-                                                <h5>AUTORES:</h5>
-                                                @for($i = 0; $i < sizeof($autores); $i++)
-                                                    @if(!empty($autores[$j][$i])) 
-                                                        @if($drafts[$j][0]->codigo_anteproyecto == $autores[$j][$i]->codigo_anteproyecto)
-                                                            <p>{{$autores[$j][$i]->name}} {{$autores[$j][$i]->last_name}} - {{$autores[$j][$i]->codigo_especifico}}</p>
-                                                        @endif
-                                                    @endif
-                                                @endfor  
-                                            </td></tr> 
-                                            <tr><td>
-                                                <h5>ESTADO:</h5>
-                                                @for($i = 0; $i < sizeof($estados); $i++)
-                                                    @if(!empty($estados[$i])) 
-                                                        @if($drafts[$j][0]->codigo_estadoante == $estados[$i]->codigo_estadoante)
-                                                            <p>{{$estados[$i]->nombre_estadoante}} </p>
-                                                        @endif
-                                                    @endif
-                                                @endfor  
-                                            </td></tr> 
-                                        </tbody>
-                                    </table>
+                                <h5 style="text-align:left;"><strong>DIRECTORES</strong></h5>
+                                    @for($i = 0; $i < sizeof($directors); $i++) 
+                                        @if(!empty($directors[$j][$i]) && $drafts[$j][0]->codigo_anteproyecto == $directors[$j][$i]->codigo_anteproyecto)
+                                            <p style="text-align:left;margin-left:5px;margin: 5px 0px 5px 20px;font-size:12px;">{{$directors[$j][$i]->name}} {{$directors[$j][$i]->last_name}}</p>
+                                        @endif
+                                    @endfor
 
-                               
+                                <h5 style="text-align:left;"><strong>Autores</strong></h5>
+                                    @for($i = 0; $i < sizeof($autores); $i++)
+                                        @if(!empty($autores[$j][$i]) && $drafts[$j][0]->codigo_anteproyecto == $autores[$j][$i]->codigo_anteproyecto)
+                                            <p style="text-align:left;margin-left:5px;margin: 5px 0px 5px 20px;font-size:12px;">{{$autores[$j][$i]->name}} {{$autores[$j][$i]->last_name}}</p>
+                                        @endif
+                                @endfor                                
                             </div>
                         </div>
-                        <div class="box box-footer text-center" >
-                            <button id="bajar" class="btn btn-info"><i class="fa fa-download"></i><i></i></button>&nbsp&nbsp
+                        <div class="box box-footer text-center" style="border-top: 0px; margin:5px auto;box-shadow: 0px 0px;">
+                            <a href="{{ asset($drafts[$j][0]->url_anteproyecto) }}" target="blank" id="bajar" class="btn btn-info" @if($drafts[$j][0]->existAnteproyecto()==1) disabled="true" @endif><i class="fa fa-download"></i><i></i></a>&nbsp&nbsp
                             @php $f = $drafts[$j][0]->toString(); @endphp
                             <button onclick="agregarModal({{ $f }})" type = "submit" id="bajar" class="btn btn-warning" @if($drafts[$j][0]->codigo_estadoante=='3') disabled="true" @endif><i class="fa fa-edit"></i></button>&nbsp&nbsp
-                            <button id="subir" class="btn btn-success" data-toggle="modal" data-target="#registrar" @if($drafts[$j][0]->codigo_estadoante=='3') disabled="true" @endif><i class="fa fa-send"></i><i></i></button>
+                            @php $docs = "'".$drafts[$j][0]->codigo_anteproyecto."','".$drafts[$j][0]->existUgad()."','".$drafts[$j][0]->existAnteproyecto()."','".$drafts[$j][0]->codigo_estadoante."'"; @endphp
+                            <button onclick="documentos({{ $docs }})" id="subir" class="btn btn-success" data-toggle="modal" data-target="#registrar" @if($drafts[$j][0]->codigo_estadoante=='3') disabled="true" @endif><i class="fa fa-send"></i><i></i></button>
                         </div>
                     </div>
+                </div>
+                @endfor
             </div>
-            @endfor
         </div>
+    </section>
 
 </div>
-</section>
-
-</div>
-
-
-
-
 
 <!-- /.content -->
 
@@ -174,40 +149,43 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:#dd4b39;">
+                <i class="fa fa-upload" style="color:#fff; font-size:14px"></i><i style="color:#fff; font-size:14px"> Adjuntar archivos</i>
                 <a class="fa fa-remove" data-dismiss="modal" style="color:rgb(241, 240, 240); float:right; cursor:pointer;"></a>
             </div>
 
-            <div class="row" style="margin:0% auto;">
+            <div class="row" style="margin:0% auto; width:90% background-color:rgb(241, 240, 240);">
                 <div class="col-sm-12 col-md-12" style="padding-left: 0px; padding-right: 0px;">
                     <div class="caption" style="background-color:rgb(241, 240, 240); margin: 0px 0px 0px 0px; height:250%;">
-                        <section class="content">
+                        
+                        <section class="content" style="padding:20px;">
                             <div style="background-color:rgb(241, 240, 240);">
-                                <div class="box box-primary">
-                                    <div class="box-header with-border">
-                                        <i class="fa fa-upload"></i> Adjuntar archivos
-                                    </div>
+                                <div class="box box-primary" style="margin: 0px;">
                                     <div class="box-body">
-                                        <div class= "row text-left" style="margin: 2%">
-                                            <div class = "col-md-6 col-xs-12 col-sm-12"><i class = "fa fa-bar-chart"></i><i> </i>Reporte de materias actual:</div>
-                                            <div class = "col-md-6 col-xs-12 col-sm-12"><input type= "file" id="notas" name="notas"></div>
-                                        </div>
+                                        <p style="text-align:justify; color:#4b636e;">Para subir archivos debes tener en cuenta que estos deben estar en formato PDF y no deben superar los 10MB</p>
+                                        <form method="POST" action="{{ route('uploading-documents') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+                                            @csrf
+                                            
+                                            <input id="code" name="code" type="text" hidden="true">
 
-                                        <div class= "row text-left" style="margin: 2%">
-                                            <div class = "col-md-6 col-xs-12 col-sm-12"><i class = "fa fa-folder-open"></i><i> </i>Solicitud de presentación de Anteproyecto:</div>
-                                            <div class = "col-md-6 col-xs-12 col-sm-12"><input type= "file" id="notas" name="notas"></div>
-                                        </div>
+                                            <div class= "row text-left" style="margin:20px 25px;">
+                                                <label><i class="fa fa-book"></i> Documento de Anteproyecto <i class="text-muted" id="boolante" name="boolante"> </i></label>
+                                                <input type= "file" id="anteproyecto" name="anteproyecto">
+                                            </div>
 
-                                        <div class= "row text-left" style="margin: 2%">
-                                            <div class = "col-md-6 col-xs-12 col-sm-we2"><i class = "fa fa-book"></i><i> </i>Documento de Anteproyecto:</div>
-                                            <div class = "col-md-6 col-xs-12 col-sm-12"><input type= "file" id="notas" name="notas"></div>
-                                        </div>
-                                    </div>
-                                    <div class=" box-footer clearfix text-center ">
-                                        <div>
-                                            <button id="bajar " class="btn btn-primary " style="margin-top: 5%; width: 180px; margin-right: 5%; "><i class="fa fa-hdd-o "></i>&nbsp;<i>Guardar sin enviar</i></button>
+                                            <hr style="margin: 3px auto;width: 75%;">
+                                            <div class= "row text-left" style="margin:20px 25px;">
+                                                <label><i class = "fa fa-folder-open"></i> Carta radicado UGAD <i class="text-muted" id="boolugad" name="boolugad"> </i></label>
+                                                
+                                                <input type= "file" id="ugad" name="ugad">
+                                            </div>
 
-                                            <button id="bajar " class="btn btn-success " style="margin-top: 5%; width: 180px; "><i class="fa fa-share "></i>&nbsp;<i>Enviar al comité</i></button>
-                                        </div>
+                                            <hr style="margin: 10px auto;width: 90%;">
+
+                                            <div style="width: 404px;margin: 0px auto;">
+                                                <button id="accion" name="accion" value="save" type="submit" class="btn btn-primary" style="margin: 5px 10px;width: 180px;"><i class="fa fa-hdd-o"></i>&nbsp;<i>Guardar sin enviar</i></button>
+                                                <button id="send" name="send" value="send" type="submit" class="btn btn-success" style="margin: 5px 10px;width: 180px;"><i class="fa fa-share"></i>&nbsp;<i>Enviar al comité</i></button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -224,12 +202,25 @@
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 
 <script>
-            function showInfoDraft(id) {
-                let url = window.location.href;
-                url = url.split('#')[0] + '#editar?id=' + id;
-                window.location.href = url;
-                
-			}
+    $(document).on('change','input[type="file"]',function(){
+        var fileName = this.files[0].name;
+        var fileSize = this.files[0].size;
 
+        if(fileSize > 10000000){
+            alert('El archivo no debe superar los 10MB');
+            this.value = '';
+            this.files[0].name = '';
+        }else{
+            var ext = fileName.split('.').pop();
+            switch (ext) {
+                case 'pdf': break;
+                default:
+                    alert('El archivo no tiene la extensión adecuada');
+                    this.value = ''; // reset del valor
+                    this.files[0].name = '';
+            }
+        }
+    });
 </script>
+
 @endsection
