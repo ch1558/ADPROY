@@ -32,7 +32,7 @@
                     </ul>
                 </li>
 
-                <!--Gestion de poyectos-->
+                <!--Gestion de Anteproyectos-->
                 <li class="treeview @if(Request::path()=='drafts-list-student'||Request::path()=='upload-draft') active @endif">
                     <a href="">
                         <i class="fa fa-book"></i><span>Anteproyectos</span> <i class="fa fa-angle-left pull-right"></i>
@@ -50,7 +50,7 @@
                 <!--Reuniones del anteproyecto-->
                 <li class="treeview @if(Request::path()=='draft-meetings') active @endif">
                     <a href="">
-                        <i class="fa fa-calendar-check-o"></i> <span>Reuniones</span> <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-calendar-check-o"></i> <span>Reunion anteproyecto</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <!--Seguimiento de reuniones-->
@@ -59,6 +59,21 @@
                         </li>
                     </ul>
                 </li>
+
+                <!--Gestion de proyectos-->
+                <li class="treeview @if(Request::path()=='create-project' || Request::path()=='draft-meetings') active @endif">
+                        <a href="">
+                            <i class="fa fa-book"></i><span>Proyectos</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="hvr-icon-back2 @if(Request::path()=='create-project') active @endif">
+                                <a href="{{ route('create-project') }}">Crear Proyecto</a>
+                            </li>
+                            <li class="hvr-icon-back2 @if(Request::path()=='draft-meetings') active @endif">
+                                <a href="{{ route('draft-meetings') }}">Listado de proyectos</a>
+                            </li>
+                        </ul>
+                    </li>
 
                 <!--Cronograma-->
                 <li class="treeview @if(Request::path()=='meet-calendar') active @endif">
