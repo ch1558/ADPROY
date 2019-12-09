@@ -417,9 +417,35 @@ class PageController extends Controller{
         else
             return redirect()->route('project-objectives');
     }
+
+    public function showAcceptGoals(){
+        $letter = Carta::join('director','director.codigo_anteproyecto','=','carta.anteproyecto')
+                       ->join('proyecto','proyecto.carta_aprobacion','=','carta.codigo')
+                       ->where('director.codigo_persona',auth()->user()->id)->get();
+        $ownObjectives = array();
+        $ownDrafts = array();
+        
+        for($i=0; $i<sizeof($letter); $i++){
+            $objectives = Hitos::where('cronograma',$letter[$i]->cronograma)
+                               ->where('estado','=','0')->get();
+            array_push($ownObjectives,$objectives);
+            $draft = Anteproyecto::where('codigo_anteproyecto',$letter[$i]->anteproyecto)->get();
+            array_push($ownDrafts,$draft);
+        }
+        return view('accept-goals')->with(compact('ownObjectives'))
+                                   ->with(compact('ownDrafts'));
+    }
     
-    public function acceptGoals(){
-        return view('accept-goals');
+    public function acceptGoals(Request $request){
+        $objective = new Hitos;
+
+        if($request['accion']=='aceptar'){
+            $objective->cambiarEstado($request['hito'],1);
+        }else{
+            $objective->cambiarEstado($request['hito'],2);
+        }
+
+        return redirect()->route('accept-goals');
     }
 
     public function finishProject(){

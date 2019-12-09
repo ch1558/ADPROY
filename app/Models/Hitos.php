@@ -18,7 +18,14 @@ class Hitos extends Model{
         $newObjective->fin = $request['fecha_final'];
         $newObjective->fin_real = $request['fecha_real'];
         $newObjective->observaciones = $request['observacion'];
+        $newObjective->estado = 0;
 
+        $newObjective->save();
+    }
+
+    public function cambiarEstado($codigo,$estado){
+        $newObjective = Hitos::where('codigo','=',$codigo)->get();
+        $newObjective->estado = $estado;
         $newObjective->save();
     }
 
