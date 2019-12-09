@@ -49,7 +49,7 @@
 
                 <li class="treeview @if(Request::path()=='draft-meetings'||Request::path()=='approve-meetings') active @endif">
                         <a href="">
-                            <i class="fa fa-address-book"></i><span>Reuniones</span> <i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa fa-address-book"></i><span>Reunion anteproyecto</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
                             <li class="hvr-icon-back2 @if(Request::path()=='draft-meetings') active @endif">
@@ -61,18 +61,20 @@
                         </ul>
                     </li>
 
-            <!--Historial de poyectos
-                <li class="treeview">
-                    <a href="./listado-proyectos.html">
-                        <i class="fa fa-calendar-check-o"></i> <span>Juicios</span> <i class="fa fa-angle-left pull-right"></i>
+                <!--Proyectos-->
+                <li class="treeview @if(Request::path()=='accept-goals') active @endif">
+                    <a href="">
+                        <i class="fa fa-user"></i><span>Proyectos</span>
+                        <i class="fa fa-angle-left pull-right"></i>
                     </a>
+                    <!--Sublista para los proyectos-->
                     <ul class="treeview-menu">
-                        <li class="hvr-icon-back2">
-                            <a href=""> ----</a>
+                        <!--Revisión de objetivos-->
+                        <li class="hvr-icon-back2 @if(Request::path()=='accept-goals') active @endif">
+                            <a href="{{ route('accept-goals') }}"> Revisión de objetivos </a>
                         </li>
                     </ul>
                 </li>
-            -->
 
                 <!--Cronograma-->
                 <li class="treeview @if(Request::path()=='meet-calendar') active @endif">

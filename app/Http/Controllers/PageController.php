@@ -19,6 +19,7 @@ use App\Models\Tema;
 use App\Models\Cronograma;
 use App\Models\Proyecto;
 use App\Models\Carta;
+use App\Models\Hitos;
 use App\Models\Rol;
 use App\User;
 use Illuminate\Http\Request;
@@ -381,12 +382,70 @@ class PageController extends Controller{
         return redirect()->route('approve-meetings');
     }
 
-    public function projectObjectives(){
+    public function showProjectObjectives(){
         return view('project-objectives');
     }
+
+    public function projectObjectives(Request $request){
+        $letter = Carta::join('autor_anteproyecto','carta.anteproyecto','=','autor_anteproyecto.codigo_anteproyecto')
+                       ->where('autor_anteproyecto.codigo_persona',auth()->user()->id)->get();
+        $projectSchedule = Proyecto::where('carta_aprobacion',$letter[0]->codigo)->get()[0]->cronograma;
+        $schedule = Cronograma::where('codigo',$projectSchedule)->get();
+        $ownObjectives = Hitos::where('cronograma',$schedule[0]->codigo)->get();
+        $objective = new Hitos;
+        $messages = '';
+
+        
+        if(sizeof($letter)==1 && sizeof($ownObjectives)<$schedule[0]->hitos){
+            $dateInit = date("Y-m-d",strtotime($schedule[0]->fecha_fin."- ".$schedule[0]->duracion." month"));
+            if($request['fecha_inicio']<$dateInit || $request['fecha_inicio']>$schedule[0]->fecha_fin){
+                $messages = '¡Fecha de inicio incorrecta!'; 
+            } else if($request['fecha_final']<$request['fecha_inicio'] || $request['fecha_final']>$schedule[0]->fecha_fin){
+                $messages = '¡Fecha de final incorrecta!';
+            } else if($request['fecha_real']<$request['fecha_inicio']){
+                $messages = '¡Fecha de real incorrecta!';
+            } else{
+                $objective->store($request, $projectSchedule);
+            }
+        } else if(sizeof($ownObjectives) >= $schedule[0]->hitos)
+            $messages = '¡Está superando la cantidad de objetivos!';
+        else
+            $messages = '¡No tiene proyectos activos!';
+            
+        if($messages!='')
+            return redirect()->route('project-objectives')->with('status',$messages);  
+        else
+            return redirect()->route('project-objectives');
+    }
+
+    public function showAcceptGoals(){
+        $letter = Carta::join('director','director.codigo_anteproyecto','=','carta.anteproyecto')
+                       ->join('proyecto','proyecto.carta_aprobacion','=','carta.codigo')
+                       ->where('director.codigo_persona',auth()->user()->id)->get();
+        $ownObjectives = array();
+        $ownDrafts = array();
+        
+        for($i=0; $i<sizeof($letter); $i++){
+            $objectives = Hitos::where('cronograma',$letter[$i]->cronograma)
+                               ->where('estado','=','0')->get();
+            array_push($ownObjectives,$objectives);
+            $draft = Anteproyecto::where('codigo_anteproyecto',$letter[$i]->anteproyecto)->get();
+            array_push($ownDrafts,$draft);
+        }
+        return view('accept-goals')->with(compact('ownObjectives'))
+                                   ->with(compact('ownDrafts'));
+    }
     
-    public function acceptGoals(){
-        return view('accept-goals');
+    public function acceptGoals(Request $request){
+        $objective = new Hitos;
+
+        if($request['accion']=='aceptar'){
+            $objective->cambiarEstado($request['hito'],1);
+        }else{
+            $objective->cambiarEstado($request['hito'],2);
+        }
+
+        return redirect()->route('accept-goals');
     }
 
     public function finishProject(){
@@ -501,10 +560,15 @@ class PageController extends Controller{
                              ->where('autor_anteproyecto.codigo_persona',auth()->user()->id)->get();
 
         $verification = Carta::where('anteproyecto',$draft[0]->codigo_anteproyecto)->get();
-        $newSchedule = $schedule->store($request);  
-        $newLetter = $letter->store($request, $draft[0]->codigo_anteproyecto);
-        $project->store($newSchedule->id, $newLetter->id);
+        if(sizeof($verification)==0){
+            $newSchedule = $schedule->store($request);  
+            $newLetter = $letter->store($request, $draft[0]->codigo_anteproyecto);
+            $project->store($newSchedule->id, $newLetter->id);
 
-        return redirect()->route('create-project');
+            return redirect()->route('create-project');
+        } else{
+            return redirect()->route('create-project')->with('status', '¡El proyecto ya ha sido creado!');
+        }
+        
     }
 }
