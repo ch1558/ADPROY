@@ -27,7 +27,6 @@ class FichaEvaluacion extends Model{
         $evaluate->save();
 
         return $evaluate;
-
     }
 
 }
