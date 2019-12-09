@@ -498,7 +498,7 @@ class PageController extends Controller{
 
         $newSchedule = $schedule->store($request);  
         $newLetter = $letter->store($request, $draft[0]->codigo_anteproyecto);
-        $project->store($request, $newSchedule->id, $newLetter->id);
+        $project->store($newSchedule->id, $newLetter->id);
 
         return redirect()->route('create-project');
     }

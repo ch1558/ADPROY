@@ -11,7 +11,7 @@ class Carta extends Model{
 
     public function store(Request $request, $codigo_anteproyecto){
         $newLetter = new Carta;
-        $prefix = 'documentacion_'.$request['reunion'].'_';
+        $prefix = 'documentacion_'.$codigo_anteproyecto.'_';
 
         if($request->hasFile('carta')){
             $letter = $request->file('carta');
