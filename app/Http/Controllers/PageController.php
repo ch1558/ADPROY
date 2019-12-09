@@ -471,4 +471,12 @@ class PageController extends Controller{
         return redirect()->route('director-approve');
     }
 
+    public function showEvaluateDraft(){
+        return view('evaluate-draft');
+    }
+
+    public function evaluateDraft(Request $request){
+        return $request;
+    }
+
 }
