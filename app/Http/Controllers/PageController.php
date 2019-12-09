@@ -497,9 +497,11 @@ class PageController extends Controller{
                              ->where('autor_anteproyecto.codigo_persona',auth()->user()->id)->get();
 
         $newSchedule = $schedule->store($request);  
-        $newLetter = $letter->store($request, $draft[0]->codigo_anteproyecto);
-        $project->store($request, $newSchedule->id, $newLetter->id);
+        
+        return $letter->store($request, $draft[0]->codigo_anteproyecto);
+ 
+        //$project->store($request, $newSchedule->id, $newLetter->id);
 
-        return redirect()->route('create-project');
+        //return redirect()->route('create-project');
     }
 }

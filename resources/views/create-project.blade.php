@@ -21,7 +21,7 @@
                 </div>
     
                 <!-- Listado de los proyectos -->
-                <form method="POST" action="{{ route('create-project') }}" enctype = "multipart/form-data">
+                <form method="POST" action="{{ route('create-project') }}" accept-charset="UTF-8" enctype="multipart/form-data">
                     @csrf
                     <div id="comite-meet">
                         <div class="col-xs-11 col-md-3 div-borde input-group mb-3" style="margin: 5px 15px;">
