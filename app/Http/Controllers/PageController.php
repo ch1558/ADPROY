@@ -13,6 +13,9 @@ use App\Models\Modalidad;
 use App\Models\Reunion;
 use App\Models\ReunionAnte;
 use App\Models\Tema;
+use App\Models\Cronograma;
+use App\Models\Proyecto;
+use App\Models\Carta;
 use App\Models\Rol;
 use App\User;
 use Illuminate\Http\Request;
@@ -449,5 +452,22 @@ class PageController extends Controller{
         $approveDraft->save();
 
         return redirect()->route('director-approve');
+    }
+
+    public function showCreateProject(){
+        $date = date("Y-m-d",strtotime(date("Y-m-d")."- 2 month"));
+        $meetings = Reunion::where('fecha_reunion','>',$date)->get();
+        return view('create-project')->with(compact('meetings'));
+    }
+
+    public function createProject(Request $request){
+        $schedule = new Cronograma;
+        $project = new Proyecto;
+        $letter = new Carta;
+
+        $newSchedule = $schedule->store($request);
+        $project->store($request, $newSchedule->id);
+
+        return redirect()->route('create-project');
     }
 }
