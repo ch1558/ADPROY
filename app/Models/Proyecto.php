@@ -9,11 +9,11 @@ class Proyecto extends Model{
     
     protected $table = 'proyecto';
 
-    public function store(Request $request, $cronograma){
+    public function store($schedule, $letter){
         $newProject = new Proyecto;
 
-        $newProject->cronograma = $cronograma;
-        $newProject->carta_aprobacion = 1;
+        $newProject->cronograma = $schedule;
+        $newProject->carta_aprobacion = $letter;
         $newProject->estado = 2;
 
         $newProject->save();

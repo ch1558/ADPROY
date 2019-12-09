@@ -61,7 +61,7 @@
                 </li>
 
                 <!--Gestion de proyectos-->
-                <li class="treeview @if(Request::path()=='create-project' || Request::path()=='draft-meetings') active @endif">
+                <li class="treeview @if(Request::path()=='create-project') active @endif">
                         <a href="">
                             <i class="fa fa-book"></i><span>Proyectos</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
@@ -69,8 +69,8 @@
                             <li class="hvr-icon-back2 @if(Request::path()=='create-project') active @endif">
                                 <a href="{{ route('create-project') }}">Crear Proyecto</a>
                             </li>
-                            <li class="hvr-icon-back2 @if(Request::path()=='draft-meetings') active @endif">
-                                <a href="{{ route('draft-meetings') }}">Listado de proyectos</a>
+                            <li class="hvr-icon-back2">
+                                <a href="">Listado de proyectos</a>
                             </li>
                         </ul>
                     </li>

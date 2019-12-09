@@ -484,9 +484,13 @@ class PageController extends Controller{
         $schedule = new Cronograma;
         $project = new Proyecto;
         $letter = new Carta;
+        $draft = Anteproyecto::join('autor_anteproyecto','autor_anteproyecto.codigo_anteproyecto','=','anteproyecto.codigo_anteproyecto')
+                             ->where('codigo_estadoante','!=','3')
+                             ->where('autor_anteproyecto.codigo_persona',auth()->user()->id)->get();
 
-        $newSchedule = $schedule->store($request);
-        $project->store($request, $newSchedule->id);
+        $newSchedule = $schedule->store($request);  
+        $newLetter = $letter->store($request, $draft[0]->codigo_anteproyecto);
+        $project->store($request, $newSchedule->id, $newLetter->id);
 
         return redirect()->route('create-project');
     }
